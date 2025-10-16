@@ -1,0 +1,16 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "cake-shop-back-end | v1",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://localhost:7198"
+    },
+    {
+      "url": "http://localhost:5240"
+    }
+  ],
+  "paths": { }
+}

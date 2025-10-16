@@ -1,0 +1,585 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\serviceregistrations\\servicebll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\serviceregistrations\\servicebll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\serviceregistrations\\servicedal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\serviceregistrations\\servicedal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\appsettings.production.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\appsettings.production.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\dataobjects\\responses\\datalistresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\dataobjects\\responses\\datalistresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\dataobjects\\requests\\loggingrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\dataobjects\\requests\\loggingrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\dataobjects\\responses\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\dataobjects\\responses\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\dataaccess\\cms\\userdataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\dataaccess\\cms\\userdataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\dataaccess\\webapp\\webdataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\dataaccess\\webapp\\webdataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\interfaces\\webapp\\iwebapp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\interfaces\\webapp\\iwebapp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\interfaces\\cms\\iuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\interfaces\\cms\\iuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\helpers\\logginghelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\helpers\\logginghelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\helpers\\ilogginghelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\helpers\\ilogginghelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\helpers\\encryptdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\helpers\\encryptdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\helpers\\iencryptdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\helpers\\iencryptdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\helpers\\authen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\helpers\\authen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\helpers\\ijwtauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\helpers\\ijwtauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\extensions\\strings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\extensions\\strings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\helpers\\commonfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\helpers\\commonfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\helpers\\icommonfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\helpers\\icommonfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\globalussing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\globalussing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\cake-shop-back-end.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\cake-shop-back-end.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\extensions\\consts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\extensions\\consts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\appsettings.production.example.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\appsettings.production.example.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\cake-shop-back-end.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\cake-shop-back-end.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\controllers\\wepapp\\homecontroller2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\controllers\\wepapp\\homecontroller2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\controllers\\cms\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\controllers\\cms\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|c:\\users\\admin\\desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E29B8025-4D29-5C52-DFC0-D09B8ACD47D5}|cake-shop-back-end\\cake-shop-back-end.csproj|solutionrelative:cake-shop-back-end\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DataListResponse.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\DataObjects\\Responses\\DataListResponse.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\DataObjects\\Responses\\DataListResponse.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\DataObjects\\Responses\\DataListResponse.cs",
+              "RelativeToolTip": "cake-shop-back-end\\DataObjects\\Responses\\DataListResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:21:58.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "APIResponse.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\DataObjects\\Responses\\APIResponse.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\DataObjects\\Responses\\APIResponse.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\DataObjects\\Responses\\APIResponse.cs",
+              "RelativeToolTip": "cake-shop-back-end\\DataObjects\\Responses\\APIResponse.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAiwAMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:18:20.846Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "WebDataAccess.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\DataAccess\\WebApp\\WebDataAccess.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\DataAccess\\WebApp\\WebDataAccess.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\DataAccess\\WebApp\\WebDataAccess.cs",
+              "RelativeToolTip": "cake-shop-back-end\\DataAccess\\WebApp\\WebDataAccess.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:17:38.314Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UserDataAccess.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\DataAccess\\Cms\\UserDataAccess.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\DataAccess\\Cms\\UserDataAccess.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\DataAccess\\Cms\\UserDataAccess.cs",
+              "RelativeToolTip": "cake-shop-back-end\\DataAccess\\Cms\\UserDataAccess.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:17:19.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IWebApp.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Interfaces\\WebApp\\IWebApp.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Interfaces\\WebApp\\IWebApp.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Interfaces\\WebApp\\IWebApp.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Interfaces\\WebApp\\IWebApp.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:10:07.669Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Program.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Program.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Program.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Program.cs",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAswHkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T06:23:52.564Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LoggingRequest.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\DataObjects\\Requests\\LoggingRequest.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\DataObjects\\Requests\\LoggingRequest.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\DataObjects\\Requests\\LoggingRequest.cs",
+              "RelativeToolTip": "cake-shop-back-end\\DataObjects\\Requests\\LoggingRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:05:51.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ServiceBLL.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\ServiceRegistrations\\ServiceBLL.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\ServiceRegistrations\\ServiceBLL.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\ServiceRegistrations\\ServiceBLL.cs",
+              "RelativeToolTip": "cake-shop-back-end\\ServiceRegistrations\\ServiceBLL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T06:46:39.197Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IUser.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Interfaces\\Cms\\IUser.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Interfaces\\Cms\\IUser.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Interfaces\\Cms\\IUser.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Interfaces\\Cms\\IUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:09:37.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Models\\User.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Models\\User.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:08:21.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "LoggingHelpers.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Helpers\\LoggingHelpers.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Helpers\\LoggingHelpers.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Helpers\\LoggingHelpers.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Helpers\\LoggingHelpers.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:07:44.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ILoggingHelpers.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Helpers\\ILoggingHelpers.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Helpers\\ILoggingHelpers.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Helpers\\ILoggingHelpers.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Helpers\\ILoggingHelpers.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:04:54.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "EncryptData.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Helpers\\EncryptData.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Helpers\\EncryptData.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Helpers\\EncryptData.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Helpers\\EncryptData.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwDwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:03:21.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "IEncryptData.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Helpers\\IEncryptData.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Helpers\\IEncryptData.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Helpers\\IEncryptData.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Helpers\\IEncryptData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:02:39.365Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Authen.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Helpers\\Authen.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Helpers\\Authen.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Helpers\\Authen.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Helpers\\Authen.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:00:38.043Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "IJwtAuth.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Helpers\\IJwtAuth.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Helpers\\IJwtAuth.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Helpers\\IJwtAuth.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Helpers\\IJwtAuth.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T06:59:34.293Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Strings.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Extensions\\Strings.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Extensions\\Strings.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Extensions\\Strings.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Extensions\\Strings.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAAwAgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T06:56:08.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "CommonFunction.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Helpers\\CommonFunction.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Helpers\\CommonFunction.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Helpers\\CommonFunction.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Helpers\\CommonFunction.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAQwBYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T06:51:13.535Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ICommonFunction.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Helpers\\ICommonFunction.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Helpers\\ICommonFunction.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Helpers\\ICommonFunction.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Helpers\\ICommonFunction.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwAYAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T06:50:23.784Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ServiceDAL.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\ServiceRegistrations\\ServiceDAL.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\ServiceRegistrations\\ServiceDAL.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\ServiceRegistrations\\ServiceDAL.cs",
+              "RelativeToolTip": "cake-shop-back-end\\ServiceRegistrations\\ServiceDAL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T06:49:07.681Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "GlobalUssing.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\GlobalUssing.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\GlobalUssing.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\GlobalUssing.cs",
+              "RelativeToolTip": "cake-shop-back-end\\GlobalUssing.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T06:25:04.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Properties\\launchSettings.json",
+              "RelativeToolTip": "cake-shop-back-end\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-16T03:47:09.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\appsettings.Development.json",
+              "RelativeToolTip": "cake-shop-back-end\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-16T03:04:23.593Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Consts.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Extensions\\Consts.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Extensions\\Consts.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Extensions\\Consts.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Extensions\\Consts.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T03:03:21.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "cake-shop-back-end.csproj",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\cake-shop-back-end.csproj",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\cake-shop-back-end.csproj",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\cake-shop-back-end.csproj",
+              "RelativeToolTip": "cake-shop-back-end\\cake-shop-back-end.csproj",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-16T02:59:33.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.Production.json",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\appsettings.Production.json",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\appsettings.Production.json",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\appsettings.Production.json",
+              "RelativeToolTip": "cake-shop-back-end\\appsettings.Production.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-16T03:04:46.798Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "appsettings.Production.example.json",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\appsettings.Production.example.json",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\appsettings.Production.example.json",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\appsettings.Production.example.json",
+              "RelativeToolTip": "cake-shop-back-end\\appsettings.Production.example.json",
+              "ViewState": "AgIAAAUAAAAAAAAAAABRwAoAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-16T03:46:13.267Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\appsettings.json",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\appsettings.json",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\appsettings.json",
+              "RelativeToolTip": "cake-shop-back-end\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-16T02:55:32.273Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "HomeController2.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Controllers\\WepApp\\HomeController2.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Controllers\\WepApp\\HomeController2.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Controllers\\WepApp\\HomeController2.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Controllers\\WepApp\\HomeController2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T02:46:23.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Controllers\\Cms\\HomeController.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Controllers\\Cms\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Controllers\\Cms\\HomeController.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Controllers\\Cms\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T02:45:47.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T02:44:48.299Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "DbInitializer.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Data\\DbInitializer.cs",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\Data\\DbInitializer.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\Data\\DbInitializer.cs",
+              "RelativeToolTip": "cake-shop-back-end\\Data\\DbInitializer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T02:43:49.059Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "cake-shop-back-end.http",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\cake-shop-back-end.http",
+              "RelativeDocumentMoniker": "cake-shop-back-end\\cake-shop-back-end.http",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\cake-shope-np\\cake-shop-code\\cake-shop-back-end\\cake-shop-back-end\\cake-shop-back-end.http",
+              "RelativeToolTip": "cake-shop-back-end\\cake-shop-back-end.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-10-16T02:40:26.907Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
