@@ -2,7 +2,7 @@
 
 public class APIResponse
 {
-    public required string Code { get; set; } 
+    public string Code { get; set; } 
     public string? Error { get; set; } = string.Empty;
     public Object? Data { get; set; }
 
