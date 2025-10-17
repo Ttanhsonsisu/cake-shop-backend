@@ -1,4 +1,6 @@
-﻿namespace cake_shop_back_end.Models.auth;
+﻿using cake_shop_back_end.Models.Common;
+
+namespace cake_shop_back_end.Models.auth;
 
 public class Action1 : MasterCommonModel
 {

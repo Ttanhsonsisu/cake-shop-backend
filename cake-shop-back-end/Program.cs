@@ -140,14 +140,15 @@ app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(
 
 app.MapControllers();
 
-CreateDataBaseIfNotExists(builder.Configuration);
+//CreateDataBaseIfNotExists(builder.Configuration);
+DbInitializer.Initialize(app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>());
 app.Run();
 
-void CreateDataBaseIfNotExists(IConfiguration configuration)
-{
-    var connectionString = configuration.GetConnectionString("DefaultConnection");
-    var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-    optionsBuilder.UseSqlServer(connectionString);
-    using var context = new AppDbContext(optionsBuilder.Options);
-    context.Database.EnsureCreated();
-}
+//void CreateDataBaseIfNotExists(IConfiguration configuration)
+//{
+//    var connectionString = configuration.GetConnectionString("DefaultConnection");
+//    var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+//    optionsBuilder.UseSqlServer(connectionString);
+//    using var context = new AppDbContext(optionsBuilder.Options);
+    
+//}

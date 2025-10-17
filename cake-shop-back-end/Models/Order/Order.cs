@@ -8,25 +8,22 @@ public class Order : MasterCommonModel
 
     public Guid user_id { get; set; }
 
-    public string order_code { get; set; } = null!;
+    public string? recipient_name { get; set; }
+
+    public string? recipient_phone { get; set; }
+
+    public string? recipient_address { get; set; }
+
+    public string? delivery_type { get; set; }
+
+    public DateTime? delivery_time { get; set; }
+
+    public decimal? delivery_fee { get; set; }
 
     public decimal total_amount { get; set; }
 
-    public decimal? discount_amount { get; set; }
-
-    public int? payment_status { get; set; }
-
-    public int? order_status { get; set; }
-
-    public string? shipping_address { get; set; }
-
-    public string? receiver_name { get; set; }
-
-    public string? receiver_phone { get; set; }
-
-    public string? note { get; set; }
-
     public string? payment_method { get; set; }
 
-    public string? delivery_method { get; set; }
+    public string? order_status { get; set; }
+
 }
