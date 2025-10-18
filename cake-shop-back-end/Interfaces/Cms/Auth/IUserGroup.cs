@@ -7,10 +7,10 @@ namespace cake_shop_back_end.Interfaces.Cms.Auth;
 public interface IUserGroup
 {
     public Task<APIResponse> GetListAsync(UserGroupRequest request);
-    public Task<APIResponse> GetDetailAsync(int id);
+    public Task<APIResponse> GetDetailAsync(Guid id);
     public Task<APIResponse> CreateAsync(UserGroupRequest request, string username);
     public Task<APIResponse> UpdateAsync(UserGroupRequest request, string username);
-    public Task<APIResponse> DeleteAsync(DeleteRequest req);
-    public Task<APIResponse> GetPermissionAsync(int id);
-    public Task<APIResponse> ChangeStatusAsync(DeleteRequest req);
+    public Task<APIResponse> DeleteAsync(UserGroupRequest req);
+    public Task<APIResponse> GetPermissionAsync(Guid id);
+    public Task<APIResponse> ChangeStatusAsync(UserGroupRequest req);
 }

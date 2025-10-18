@@ -10,18 +10,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace cake_shop_back_end.Controllers.Cms.Auth;
 
-[Route("api/action")]
+[Route("api/user")]
 [Authorize(Policy = "WebAdminUser")]
 [ApiController]
-public class ActionController(IAction _action, ILoggingHelpers _loggingHelpers) : ControllerBase
+public class UserController(IUser _user, ILoggingHelpers _loggingHelpers) : ControllerBase
 {
     [Route("list")]
     [HttpPost]
-    public async Task<JsonResult> GetList(ActionRequest request)
+    public async Task<JsonResult> GetList(UserRequest request)
     {
         var username = User.Claims.Where(p => p.Type.Equals(ClaimTypes.Name)).FirstOrDefault();
 
-        APIResponse data = await _action.GetListAsync(request);
+        APIResponse data = await _user.GetListAsync(request);
 
         var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
 
@@ -29,10 +29,10 @@ public class ActionController(IAction _action, ILoggingHelpers _loggingHelpers) 
         {
             UserType = Consts.USER_TYPE_WEB_ADMIN,
             IsCallApi = true,
-            ApiName = "api/action/list",
-            Actions = "Danh sách Hành động",
+            ApiName = "api/user/list",
+            Actions = "Danh sách Tài khoản",
             Application = "WEB ADMIN",
-            Content = "Danh sách Hành động",
+            Content = "Danh sách Tài khoản",
             Functions = "Danh mục",
             IsLogin = false,
             ResultLogging = data.Code == "200" ? "Thành công" : "Thất bại",
@@ -47,7 +47,8 @@ public class ActionController(IAction _action, ILoggingHelpers _loggingHelpers) 
     public async Task<JsonResult> GetDetail(Guid id)
     {
         var username = User.Claims.Where(p => p.Type.Equals(ClaimTypes.Name)).FirstOrDefault();
-        APIResponse data = await _action.GetDetailAsync(id);
+
+        APIResponse data = await _user.GetDetailAsync(id);
 
         var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
 
@@ -55,10 +56,10 @@ public class ActionController(IAction _action, ILoggingHelpers _loggingHelpers) 
         {
             UserType = Consts.USER_TYPE_WEB_ADMIN,
             IsCallApi = true,
-            ApiName = "api/action/" + id,
-            Actions = "Chi tiết Hành động",
+            ApiName = "api/user/" + id,
+            Actions = "Chi tiết Tài khoản",
             Application = "WEB ADMIN",
-            Content = "Chi tiết Hành động",
+            Content = "Chi tiết Tài khoản",
             Functions = "Danh mục",
             IsLogin = false,
             ResultLogging = data.Code == "200" ? "Thành công" : "Thất bại",
@@ -71,11 +72,11 @@ public class ActionController(IAction _action, ILoggingHelpers _loggingHelpers) 
 
     [Route("create")]
     [HttpPost]
-    public async Task<JsonResult> Create(ActionRequest request)
+    public async Task<JsonResult> Create(UserRequest request)
     {
         var username = User.Claims.Where(p => p.Type.Equals(ClaimTypes.Name)).FirstOrDefault();
 
-        APIResponse data = await _action.CreateAsync(request, username.Value);
+        APIResponse data = await _user.CreateAsync(request, username.Value);
 
         var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
 
@@ -83,10 +84,10 @@ public class ActionController(IAction _action, ILoggingHelpers _loggingHelpers) 
         {
             UserType = Consts.USER_TYPE_WEB_ADMIN,
             IsCallApi = true,
-            ApiName = "api/action/create",
-            Actions = "Tạo mới Hành động",
+            ApiName = "api/user/create",
+            Actions = "Chi tiết Tài khoản",
             Application = "WEB ADMIN",
-            Content = "Tạo mới Hành động",
+            Content = "Tạo mới Tài khoản",
             Functions = "Danh mục",
             IsLogin = false,
             ResultLogging = data.Code == "200" ? "Thành công" : "Thất bại",
@@ -99,11 +100,11 @@ public class ActionController(IAction _action, ILoggingHelpers _loggingHelpers) 
 
     [Route("update")]
     [HttpPost]
-    public async Task<JsonResult> Update(ActionRequest request)
+    public async Task<JsonResult> Update(UserRequest request)
     {
         var username = User.Claims.Where(p => p.Type.Equals(ClaimTypes.Name)).FirstOrDefault();
 
-        APIResponse data = await _action.UpdateAsync(request, username.Value);
+        APIResponse data = await _user.UpdateAsync(request, username.Value);
 
         var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
 
@@ -111,10 +112,10 @@ public class ActionController(IAction _action, ILoggingHelpers _loggingHelpers) 
         {
             UserType = Consts.USER_TYPE_WEB_ADMIN,
             IsCallApi = true,
-            ApiName = "api/action/update",
-            Actions = "Cập nhật Hành động",
+            ApiName = "api/user/update",
+            Actions = "Cập nhật Tài khoản",
             Application = "WEB ADMIN",
-            Content = "Cập nhật Hành động",
+            Content = "Cập nhật Tài khoản",
             Functions = "Danh mục",
             IsLogin = false,
             ResultLogging = data.Code == "200" ? "Thành công" : "Thất bại",
@@ -127,12 +128,12 @@ public class ActionController(IAction _action, ILoggingHelpers _loggingHelpers) 
 
     [Route("delete")]
     [HttpPost]
-    public async Task<JsonResult> Delete(ActionRequest req)
+    public async Task<JsonResult> Delete(UserRequest req)
     {
         var username = User.Claims.Where(p => p.Type.Equals(ClaimTypes.Name)).FirstOrDefault();
 
-        APIResponse data = await _action.DeleteAsync(req);
-
+        APIResponse data = await _user.DeleteAsync(req);
+        
         if (data.Code == "200")
         {
             var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
@@ -141,10 +142,10 @@ public class ActionController(IAction _action, ILoggingHelpers _loggingHelpers) 
             {
                 UserType = Consts.USER_TYPE_WEB_ADMIN,
                 IsCallApi = true,
-                ApiName = "api/action/delete",
-                Actions = "Xóa Hành động",
+                ApiName = "api/user/delete",
+                Actions = "Xóa Tài khoản",
                 Application = "WEB ADMIN",
-                Content = "Xóa Hành động",
+                Content = "Xóa Tài khoản",
                 Functions = "Danh mục",
                 IsLogin = false,
                 ResultLogging = data.Code == "200" ? "Thành công" : "Thất bại",
@@ -158,12 +159,11 @@ public class ActionController(IAction _action, ILoggingHelpers _loggingHelpers) 
 
     [Route("changeStatus")]
     [HttpPost]
-    public async Task<JsonResult> ChangeStatus(ActionRequest req)
+    public async Task<JsonResult> changeStatus(UserRequest req)
     {
         var username = User.Claims.Where(p => p.Type.Equals(ClaimTypes.Name)).FirstOrDefault();
-
-        APIResponse data = await _action.ChangeStatusAsync(req);
-
+        APIResponse data = await _user.ChangeStatusAsync(req);
+       
         if (data.Code == "200")
         {
             var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
@@ -172,10 +172,10 @@ public class ActionController(IAction _action, ILoggingHelpers _loggingHelpers) 
             {
                 UserType = Consts.USER_TYPE_WEB_ADMIN,
                 IsCallApi = true,
-                ApiName = "api/action/changeStatus",
-                Actions = "Đổi trạng thái Hành động",
+                ApiName = "api/user/changeStatus",
+                Actions = "Đổi trạng thái Nhân viên",
                 Application = "WEB ADMIN",
-                Content = "Đổi trạng thái Hành động",
+                Content = "Đổi trạng thái Nhân viên",
                 Functions = "Danh mục",
                 IsLogin = false,
                 ResultLogging = data.Code == "200" ? "Thành công" : "Thất bại",

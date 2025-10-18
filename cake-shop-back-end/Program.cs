@@ -24,6 +24,7 @@ builder.Services.AddCors(builder =>
     });
 });
 
+
 //JSON Serializer
 builder.Services.AddControllers().AddNewtonsoftJson(option =>
 
@@ -103,6 +104,7 @@ builder.Services.AddHttpClient("HttpClientWithSSLUntrusted").ConfigurePrimaryHtt
 // add DAL services
 builder.Services.AddDalServices(key, builder.Configuration);
 
+
 // add redis cache
 //builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
 //{
@@ -127,7 +129,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+       app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();

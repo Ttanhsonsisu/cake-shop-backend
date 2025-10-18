@@ -1,10 +1,11 @@
-﻿using cake_shop_back_end.Models.auth;
+﻿using cake_shop_back_end.DataObjects.Requests.Common;
+using cake_shop_back_end.Models.auth;
 
 namespace cake_shop_back_end.DataObjects.Requests.Auth;
 
-public class UserRequest
+public class UserRequest : PaggingRequest
 {
-    public int? Id { get; set; }
+    public Guid? Id { get; set; }
     public string? Username { get; set; }
     public string? FullName { get; set; }
     public string? Avatar { get; set; }
@@ -17,7 +18,7 @@ public class UserRequest
     public string? Phone { get; set; }
     public string? Email { get; set; }
     public string? Address { get; set; }
-    public int? UserGroupId { get; set; }
+    public Guid? UserGroupId { get; set; }
     public string? DeviceId { get; set; }
     public int? Status { get; set; }
     public List<UserPermission>? UserPermissions { get; set; }

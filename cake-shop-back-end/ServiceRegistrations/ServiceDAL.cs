@@ -1,6 +1,7 @@
 ﻿using cake_shop_back_end.DataAccess.Cms.Auth;
 using cake_shop_back_end.DataAccess.Cms.Common;
 using cake_shop_back_end.DataAccess.Cms.MasterData;
+using cake_shop_back_end.Extensions;
 using cake_shop_back_end.Helpers;
 using cake_shop_back_end.Interfaces.Cms.Auth;
 using cake_shop_back_end.Interfaces.Common;
@@ -32,6 +33,8 @@ public static class ServiceDAL
         services.AddScoped<IOtherListType, OtherListTypeDataAccess>();
         services.AddScoped<IVersionApp, VersionAppDataAccess>();
 
+        // extension 
+        services.AddScoped<IEmailSender, EmailSender>();
         
 
 
