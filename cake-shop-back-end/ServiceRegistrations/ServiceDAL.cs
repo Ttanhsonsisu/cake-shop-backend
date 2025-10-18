@@ -1,6 +1,8 @@
-﻿using cake_shop_back_end.DataAccess.Cms.Common;
+﻿using cake_shop_back_end.DataAccess.Cms.Auth;
+using cake_shop_back_end.DataAccess.Cms.Common;
 using cake_shop_back_end.DataAccess.Cms.MasterData;
 using cake_shop_back_end.Helpers;
+using cake_shop_back_end.Interfaces.Cms.Auth;
 using cake_shop_back_end.Interfaces.Common;
 using cake_shop_back_end.Interfaces.MasterData;
 using cake_shop_back_end.Models.Common;
@@ -17,6 +19,7 @@ public static class ServiceDAL
 
         // authen 
         services.AddSingleton<IJwtAuth>(new Authen(key));
+        services.AddScoped<IAction, ActionDataAccess>();
 
         // common 
         services.AddScoped<ICommonFunction, CommonFunction>();
@@ -29,6 +32,7 @@ public static class ServiceDAL
         services.AddScoped<IOtherListType, OtherListTypeDataAccess>();
         services.AddScoped<IVersionApp, VersionAppDataAccess>();
 
+        
 
 
     }
