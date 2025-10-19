@@ -38,7 +38,7 @@ public class User : MasterCommonModel
 
     public bool? is_admin_store { get; set; }
 
-    public Guid? store_id { get; set; }
+    public Guid? customer_id { get; set; }
 
     public string? secret_key { get; set; }
 
