@@ -18,7 +18,7 @@ public class RegisterUserController(IUser _user , ILoggingHelpers _loggingHelper
     [HttpPost]
     public async Task<JsonResult> RegisterUser(UserRequest request)
     {
-        APIResponse data = await _user.CreateNomalUser(request);
+        APIResponse data = await _user.CreateAccountAsync(request);
 
         var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
 

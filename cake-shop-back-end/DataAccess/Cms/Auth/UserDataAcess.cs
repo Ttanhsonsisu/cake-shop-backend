@@ -196,22 +196,6 @@ public class UserDataAcess(AppDbContext _context, ICommonFunction _commonFunctio
             return new APIResponse("ERROR_PASSWORD_MISSING");
         }
 
-        if (request.UserGroupId == null)
-        {
-            return new APIResponse("ERROR_USERGROUP_ID_MISSING");
-        }
-
-        if (request.UserPermissions == null || request.UserPermissions.Count == 0)
-        {
-            return new APIResponse("ERROR_PERMISSION_MISSING");
-        }
-
-        if (request.Status == null)
-        {
-            return new APIResponse("ERROR_STATUS_MISSING");
-        }
-
-
         using var transaction = await _context.Database.BeginTransactionAsync();
 
         try
@@ -488,5 +472,112 @@ public class UserDataAcess(AppDbContext _context, ICommonFunction _commonFunctio
         }
 
         return new APIResponse(200);
+    }
+
+    public async Task<APIResponse> ChangeAvatar(UserRequest req)
+    {
+        if (req.Id == null)
+        {
+            return new APIResponse("ERROR_ID_MISSING");
+        }
+
+        if (req.Avatar == null)
+        {
+            return new APIResponse("ERROR_AVATAR_MISSING");
+        }
+        var data = await _context.Users.Where(x => x.id == req.Id).FirstOrDefaultAsync();
+        if (data == null)
+        {
+            return new APIResponse("ERROR_ID_NOT_EXISTS");
+        }
+        try
+        {
+            data.avatar = req.Avatar;
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            return new APIResponse(400);
+        }
+
+        return new APIResponse(200);
+    }
+
+    public async Task<APIResponse> CreateAccountAsync(UserRequest req)
+    {
+        if (req.Username == null)
+        {
+            return new APIResponse("ERROR_USERNAME_MISSING");
+        }
+
+        if (req.Email == null)
+        {
+            return new APIResponse("ERROR_EMAIL_MISSING");
+        }
+
+        if (req.Password == null)
+        {
+            return new APIResponse("ERROR_PASSWORD_MISSING");
+        }
+
+        var dataSame = await _context.Users.Where(x => x.username == req.Username).FirstOrDefaultAsync();
+
+        // check email duplicate
+        if (dataSame == null)
+        {
+            dataSame = await _context.Users.Where(x => x.email == req.Email).FirstOrDefaultAsync();
+
+            if (dataSame != null)
+            {
+                return new APIResponse("ERROR_EMAIL_EXISTS");
+            }
+        }
+        if (dataSame != null)
+        {
+            return new APIResponse("ERROR_USERNAME_EXIST");
+        }
+
+        using var transaction = await _context.Database.BeginTransactionAsync();
+        try
+        {
+            var user = new User();
+            user.username = req.Username;
+            user.email = req.Email;
+            user.password = _commonFunction.ComputeSha256Hash(req.Password);
+            user.status = 1;
+            user.is_sysadmin = false;
+            user.is_admin = false;
+            user.date_created = DateTime.Now;
+            user.date_updated = DateTime.Now;
+            
+            await _context.Users.AddAsync(user);
+       
+            await _context.SaveChangesAsync();
+
+            var customer = new Customer();
+            customer.user_id = user.id;
+            customer.email = req.Email;
+            customer.date_created = DateTime.Now;
+            customer.date_updated = DateTime.Now;
+
+            await _context.Customers.AddAsync(customer);
+            await _context.SaveChangesAsync();
+
+            user.customer_id = customer.id;
+            _context.Users.Update(user);
+
+            await transaction.CommitAsync();
+            await transaction.DisposeAsync();
+
+            return new APIResponse(new { id = user.id, username = user.username, email = user.email }) { Code = "200" };
+        }
+        catch (Exception ex)
+        {
+            await transaction.RollbackAsync();
+            await transaction.DisposeAsync();
+
+            return new APIResponse("ERROR_ADD_FAIL");
+        }
+
     }
 }

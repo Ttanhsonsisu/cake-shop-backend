@@ -72,28 +72,18 @@ builder.Services.AddAuthentication(x =>
 });
 
 // add authorization
-
 builder.Services.AddAuthorizationBuilder()
                        // add authorization
                        .AddPolicy("WebAdminUser", policy => policy.RequireAssertion(context =>
-                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier 
+                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier
                         && c.Value == "web_admin")
     ))
                         // add authorization
-                        .AddPolicy("WebMerchantUser", policy => policy.RequireAssertion(context =>
-                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier 
-                        && (c.Value == "web_partner"))
-    ))
-                        // add authorization
-                        .AddPolicy("AppPartner", policy => policy.RequireAssertion(context =>
-                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier 
-                        && c.Value == "app_partner")
-    ))
-                        // add authorization
-                        .AddPolicy("WebAdminMerchantUser", policy => policy.RequireAssertion(context =>
-                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier 
-                        && (c.Value == "web_admin" || c.Value == "web_partner"))
+                        .AddPolicy("WebStoreUser", policy => policy.RequireAssertion(context =>
+                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier
+                        && (c.Value == "user"))
     ));
+                    
 
 builder.Services.AddHttpClient("HttpClientWithSSLUntrusted").ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
 {

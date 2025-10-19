@@ -21,5 +21,6 @@ public class UserRequest : PaggingRequest
     public Guid? UserGroupId { get; set; }
     public string? DeviceId { get; set; }
     public int? Status { get; set; }
+    public string OldPassword { get; set; } = null!;
     public List<UserPermission>? UserPermissions { get; set; }
 }

@@ -45,7 +45,7 @@ public class AuthenticationController(
             return new JsonResult(new APIResponse("ERROR_PASSWORD_INCORRECT")) { StatusCode = 200 };
         }
 
-        var token = _jwtAuth.Authentication(loginRequest.Username, _commonFunction.ComputeSha256Hash(loginRequest.Password), Consts.USER_TYPE_WEB_USER);
+        var token = _jwtAuth.AuthenticationStore(loginRequest.Username, _commonFunction.ComputeSha256Hash(loginRequest.Password), Consts.USER_TYPE_WEB_USER, checkUserName.id);
 
         if (token == null)
         {

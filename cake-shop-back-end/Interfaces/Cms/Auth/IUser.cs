@@ -12,6 +12,8 @@ public interface IUser
     public Task<APIResponse> DeleteAsync(UserRequest req);
     public Task<APIResponse> ChangeStatusAsync(UserRequest req);
     public Task<APIResponse> CreateNomalUser(UserRequest req);
+    public Task<APIResponse> ChangeAvatar(UserRequest req);
+    public Task<APIResponse> CreateAccountAsync(UserRequest req);
     //public Task<APIResponse> UpdateNomalInfo(UserRequest req);
     //public Task<APIResponse> UpdateBillngAddress(UserRequest req);
 
