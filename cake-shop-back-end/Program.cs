@@ -24,6 +24,7 @@ builder.Services.AddCors(builder =>
     });
 });
 
+
 //JSON Serializer
 builder.Services.AddControllers().AddNewtonsoftJson(option =>
 
@@ -71,28 +72,18 @@ builder.Services.AddAuthentication(x =>
 });
 
 // add authorization
-
 builder.Services.AddAuthorizationBuilder()
                        // add authorization
                        .AddPolicy("WebAdminUser", policy => policy.RequireAssertion(context =>
-                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier 
+                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier
                         && c.Value == "web_admin")
     ))
                         // add authorization
-                        .AddPolicy("WebMerchantUser", policy => policy.RequireAssertion(context =>
-                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier 
-                        && (c.Value == "web_partner"))
-    ))
-                        // add authorization
-                        .AddPolicy("AppPartner", policy => policy.RequireAssertion(context =>
-                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier 
-                        && c.Value == "app_partner")
-    ))
-                        // add authorization
-                        .AddPolicy("WebAdminMerchantUser", policy => policy.RequireAssertion(context =>
-                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier 
-                        && (c.Value == "web_admin" || c.Value == "web_partner"))
+                        .AddPolicy("WebStoreUser", policy => policy.RequireAssertion(context =>
+                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier
+                        && (c.Value == "user"))
     ));
+                    
 
 builder.Services.AddHttpClient("HttpClientWithSSLUntrusted").ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
 {
@@ -102,6 +93,7 @@ builder.Services.AddHttpClient("HttpClientWithSSLUntrusted").ConfigurePrimaryHtt
 
 // add DAL services
 builder.Services.AddDalServices(key, builder.Configuration);
+
 
 // add redis cache
 //builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
@@ -127,7 +119,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+       app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();
