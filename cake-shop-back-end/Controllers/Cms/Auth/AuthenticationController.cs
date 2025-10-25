@@ -22,67 +22,6 @@ public class AuthenticationController(
     AppDbContext _context
     ) : ControllerBase
 {
-    [AllowAnonymous]
-    [Route("login")]
-    [HttpPost]
-
-    public async Task<JsonResult> Login(LoginRequest loginRequest)
-    {
-        var checkUserName = await _context.Users.Where(x => x.username == loginRequest.Username &&  x.is_admin != true && x.status == 1).FirstOrDefaultAsync();
-
-        if (checkUserName == null)
-        {
-            return new JsonResult(new APIResponse("ERROR_USERNAME_NOT_EXISTS")) { StatusCode = 200 };
-        }
-
-        if (string.IsNullOrEmpty(loginRequest.Password) || string.IsNullOrEmpty(loginRequest.Username))
-        {
-            return new JsonResult(new APIResponse("ERROR_PASSWORD_USERNAME_EMPTY")) { StatusCode = 200 };
-        }
-
-        if (checkUserName.password != _commonFunction.ComputeSha256Hash(loginRequest.Password))
-        {
-            return new JsonResult(new APIResponse("ERROR_PASSWORD_INCORRECT")) { StatusCode = 200 };
-        }
-
-        var token = _jwtAuth.AuthenticationStore(loginRequest.Username, _commonFunction.ComputeSha256Hash(loginRequest.Password), Consts.USER_TYPE_WEB_USER, checkUserName.id);
-
-        if (token == null)
-        {
-            return new JsonResult(new APIResponse("ERROR_SERVER")) { StatusCode = 200 };
-        }
-
-        object loginResponse = new
-        {
-            token = token,
-            user_id = checkUserName.id,
-            username = checkUserName.username,
-            full_name = checkUserName.full_name,
-            avatar = checkUserName.avatar,
-            is_admin = checkUserName.is_admin,
-            is_sysadmin = checkUserName.is_sysadmin,
-        };
-
-        var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
-
-        await _loggingHelpers.InsertLogging(new LoggingRequest
-        {
-            UserType = Consts.USER_TYPE_WEB_USER,
-            IsCallApi = true,
-            ApiName = "/api/auth/login",
-            Actions = "Đăng nhập",
-            Application = "WEB ADMIN",
-            Content = loginResponse.ToString(),
-            Functions = "Hệ thống",
-            IsLogin = true,
-            ResultLogging = "Thành công",
-            UserCreated = checkUserName.username,
-            IP = remoteIP
-        });
-
-        return new JsonResult(new APIResponse(loginResponse)) { StatusCode = 200 };
-    }
-
 
     [AllowAnonymous]
     [Route("adminLogin")]
@@ -199,7 +138,7 @@ public class AuthenticationController(
 
         if (user.password != _commonFunction.ComputeSha256Hash(pwdRequest.OldPassword))
         {
-            return new JsonResult(new APIResponse(" ")) { StatusCode = 200 };
+            return new JsonResult(new APIResponse("ERROR_OLD_PASSWORD_NOT_INCORECT")) { StatusCode = 200 };
         }
 
         try
@@ -288,13 +227,15 @@ public class AuthenticationController(
             avatar = user.avatar,
             email = user.email,
             full_name = user.full_name,
+            gender = user.gender,
             phone = user.phone,
             username = user.username,
             user_group_id = user.user_group_id,
             user_group_name = userGroup == null ? "" : userGroup.name,
             is_sysadmin = user.is_sysadmin,
             is_admin = user.is_admin,
-            user_permissions = user_permissions
+            user_permissions = user_permissions,
+            description = user.description
         };
 
         var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
@@ -336,8 +277,10 @@ public class AuthenticationController(
             user.full_name = userRequest.full_name;
             user.email = userRequest.email;
             user.phone = userRequest.phone;
+            user.gender = userRequest.gender;
             user.address = userRequest.address;
             user.avatar = userRequest.avatar;
+
             await _context.SaveChangesAsync();
         }
         catch (Exception ex)
