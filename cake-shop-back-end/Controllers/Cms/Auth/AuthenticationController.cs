@@ -234,7 +234,7 @@ public class AuthenticationController(
             user_group_name = userGroup == null ? "" : userGroup.name,
             is_sysadmin = user.is_sysadmin,
             is_admin = user.is_admin,
-            user_permissions = user_permissions,
+            user_permissions = user_permissions
             description = user.description
         };
 
