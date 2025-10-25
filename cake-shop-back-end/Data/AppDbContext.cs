@@ -91,6 +91,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Review> Reviews { get; set; }
+    public DbSet<AddressInfo> AddressInfos { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -154,6 +156,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         // 1.7 Customer & Review
         modelBuilder.Entity<Customer>().ToTable("Customer").HasKey(v => v.id);
         modelBuilder.Entity<Review>().ToTable("Review").HasKey(v => v.id);
+        modelBuilder.Entity<AddressInfo>().ToTable("AddressInfo").HasKey(v => v.id);
 
 
     }
