@@ -1,4 +1,4 @@
-﻿using cake_shop_back_end.DataObjects.Requests;
+﻿using cake_shop_back_end.DataObjects.Requests.Common;
 
 namespace cake_shop_back_end.Helpers;
 

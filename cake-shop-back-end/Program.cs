@@ -3,10 +3,9 @@ using cake_shop_back_end.Data;
 using cake_shop_back_end.ServiceRegistrations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
-using StackExchange.Redis;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,11 +24,15 @@ builder.Services.AddCors(builder =>
     });
 });
 
+
 //JSON Serializer
 builder.Services.AddControllers().AddNewtonsoftJson(option =>
 
     option.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
-    .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver()
+    .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver
+    {
+        NamingStrategy = new Newtonsoft.Json.Serialization.SnakeCaseNamingStrategy()
+    }
 );
 
 // add connection database
@@ -69,28 +72,18 @@ builder.Services.AddAuthentication(x =>
 });
 
 // add authorization
-
 builder.Services.AddAuthorizationBuilder()
                        // add authorization
                        .AddPolicy("WebAdminUser", policy => policy.RequireAssertion(context =>
-                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier 
+                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier
                         && c.Value == "web_admin")
     ))
                         // add authorization
-                        .AddPolicy("WebMerchantUser", policy => policy.RequireAssertion(context =>
-                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier 
-                        && (c.Value == "web_partner"))
-    ))
-                        // add authorization
-                        .AddPolicy("AppPartner", policy => policy.RequireAssertion(context =>
-                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier 
-                        && c.Value == "app_partner")
-    ))
-                        // add authorization
-                        .AddPolicy("WebAdminMerchantUser", policy => policy.RequireAssertion(context =>
-                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier 
-                        && (c.Value == "web_admin" || c.Value == "web_partner"))
+                        .AddPolicy("WebStoreUser", policy => policy.RequireAssertion(context =>
+                        context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier
+                        && (c.Value == "user"))
     ));
+                    
 
 builder.Services.AddHttpClient("HttpClientWithSSLUntrusted").ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
 {
@@ -100,6 +93,7 @@ builder.Services.AddHttpClient("HttpClientWithSSLUntrusted").ConfigurePrimaryHtt
 
 // add DAL services
 builder.Services.AddDalServices(key, builder.Configuration);
+
 
 // add redis cache
 //builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
@@ -125,7 +119,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+       app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();
@@ -143,12 +137,3 @@ app.MapControllers();
 //CreateDataBaseIfNotExists(builder.Configuration);
 DbInitializer.Initialize(app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>());
 app.Run();
-
-//void CreateDataBaseIfNotExists(IConfiguration configuration)
-//{
-//    var connectionString = configuration.GetConnectionString("DefaultConnection");
-//    var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-//    optionsBuilder.UseSqlServer(connectionString);
-//    using var context = new AppDbContext(optionsBuilder.Options);
-    
-//}

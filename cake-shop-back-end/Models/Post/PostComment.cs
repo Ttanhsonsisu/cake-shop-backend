@@ -2,7 +2,7 @@
 
 public class PostComment
 {
-    public Guid id { get; set; }
+    public Guid id { get; set; } = Guid.NewGuid();
 
     public Guid post_id { get; set; }
 

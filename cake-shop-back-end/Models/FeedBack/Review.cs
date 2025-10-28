@@ -4,7 +4,7 @@ namespace cake_shop_back_end.Models.FeedBack;
 
 public class Review : MasterCommonModel
 {
-    public Guid id { get; set; }
+    public Guid id { get; set; } = Guid.NewGuid();
 
     public Guid? product_id { get; set; }
 

@@ -4,7 +4,7 @@ namespace cake_shop_back_end.Models.Inventory;
 
 public class Inventory : MasterCommonModel
 {
-    public Guid id { get; set; }
+    public Guid id { get; set; } = Guid.NewGuid();
 
     public Guid variant_id { get; set; }
 

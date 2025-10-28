@@ -10,6 +10,5 @@ public interface ICommonFunction
     public string ConvertDateToStringSort(DateTime? dateObject);
     public string ConvertDateToStringFull(DateTime? dateObject);
     public string ReplaceRandomStringTo(string replaceString);
-    public DataTable ExcuteQuery(string query);
-    public DataTable ExcuteQueryGetTeam(decimal customer_id);
+    
 }

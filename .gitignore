@@ -496,7 +496,7 @@ $RECYCLE.BIN/
 **/appsettings.*.json
 
 # Giữ lại file Development và file example
-!**/appsettings.Development.json
+**/appsettings.Development.json
 !**/appsettings.*.example.json
 
 # Ignore build output toàn solution
