@@ -2,7 +2,7 @@
 
 public class UserGroupPermission
 {
-    public Guid id { get; set; }
+    public Guid id { get; set; } = Guid.NewGuid();
     public Guid user_group_id { get; set; }
     public Guid action_id { get; set; }
 }

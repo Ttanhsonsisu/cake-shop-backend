@@ -4,7 +4,7 @@ namespace cake_shop_back_end.Models.auth;
 
 public class User : MasterCommonModel
 {
-    public Guid id { get; set; } = new Guid();
+    public Guid id { get; set; } = Guid.NewGuid();
 
     public string? code { get; set; }
 
