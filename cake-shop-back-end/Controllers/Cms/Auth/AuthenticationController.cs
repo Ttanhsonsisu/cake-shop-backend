@@ -274,6 +274,7 @@ public class AuthenticationController(
 
         try
         {
+            user.birth_date = userRequest.birth_date;
             user.full_name = userRequest.full_name;
             user.email = userRequest.email;
             user.phone = userRequest.phone;

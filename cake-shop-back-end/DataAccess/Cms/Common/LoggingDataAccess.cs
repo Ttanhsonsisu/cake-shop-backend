@@ -204,4 +204,67 @@ public class LoggingDataAccess(AppDbContext _context) : ILogging
 
         return new APIResponse(dataResult);
     }
+
+    public async Task<APIResponse> GetListLogInCurrentAdmin(FilterLoggingRequest request, string username)
+    {
+        // Default PageNo, PageSize
+        if (request.PageSize < 1)
+        {
+            request.PageSize = Consts.PAGE_SIZE;
+        }
+
+        if (request.PageNo < 1)
+        {
+            request.PageNo = 1;
+        }
+        // Số lượng Skip
+        int skipElements = (int)((request.PageNo - 1) * request.PageSize);
+        //.Take(request.PageSize).Skip(skipElements)
+        // Khai báo mảng ban đầu
+        var lstOtherListType = (from p in _context.Loggings
+                                where p.is_login == true && p.user_created == username
+                                orderby p.date_created descending
+                                select new
+                                {
+                                    user_created = p.user_created,
+                                    application = p.application,
+                                    actions = p.actions,
+                                    IP = p.IP,
+                                    is_login = p.is_login,
+                                    date_created = p.date_created,
+                                    result_logging = p.result_logging
+                                });
+
+        // Nếu tồn tại Where theo tên
+        if (request.Search != null && request.Search.Length > 0)
+        {
+            lstOtherListType = lstOtherListType.Where(x => x.user_created.Contains(request.Search) || x.actions.Contains(request.Search));
+        }
+
+        if (request.Applications != null && request.Applications.Length > 0)
+        {
+            lstOtherListType = lstOtherListType.Where(x => x.application.Contains(request.Applications));
+        }
+
+        // Đếm số lượng
+        int countElements = lstOtherListType.Count();
+
+        // Số lượng trang
+        int totalPage = countElements > 0
+                ? (int)Math.Ceiling(countElements / (double)request.PageSize)
+                : 0;
+
+        // Data Sau phân trang
+        var dataList = await lstOtherListType.Take(request.PageSize * request.PageNo).Skip(skipElements).ToListAsync();
+        var dataResult = new DataListResponse
+        {
+            PageNo = request.PageNo,
+            PageSize = request.PageSize,
+            TotalElements = countElements,
+            TotalPage = totalPage,
+            Data = dataList
+        };
+
+        return new APIResponse(dataResult);
+    }
 }

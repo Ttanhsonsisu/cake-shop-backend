@@ -14,6 +14,34 @@ namespace cake_shop_back_end.Controllers.Cms.Common;
 [ApiController]
 public class LoggingController(ILogging _logging , ILoggingHelpers _loggingHelpers) : ControllerBase
 {
+    [Route("listLoginCurrentAdmin")]
+    [HttpPost]
+    public async Task<JsonResult> GetListLoginCurrentAdmin([FromBody] FilterLoggingRequest req)
+    {
+        var username = User.Claims.Where(p => p.Type.Equals(ClaimTypes.Name)).FirstOrDefault();
+
+        var response = await _logging.GetListLogInCurrentAdmin(req, username.Value.ToString());
+
+        var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
+
+        await _loggingHelpers.InsertLogging(new LoggingRequest
+        {
+            UserType = Consts.USER_TYPE_WEB_ADMIN,
+            IsCallApi = true,
+            ApiName = "api/logging/listLoginCurrentAdmin",
+            Actions = "Danh sách Log Đăng nhập Tài khoản hiện tại",
+            Application = "WEB ADMIN",
+            Content = "Danh sách Log Đăng nhập Tài khoản hiện tại",
+            Functions = "Danh mục",
+            IsLogin = false,
+            ResultLogging = response.Code == "200" ? "Thành công" : "Thất bại",
+            UserCreated = username?.Value ?? "Unknown",
+            IP = remoteIP.ToString()
+        });
+
+        return new JsonResult(response) { StatusCode = 200 };
+    }
+
     [Route("listLogin")]
     [HttpPost]
     public async Task<JsonResult> GetListLogIn([FromBody] FilterLoggingRequest req)

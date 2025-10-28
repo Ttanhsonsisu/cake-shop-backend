@@ -8,4 +8,5 @@ public interface ILogging
     public Task<APIResponse> GetListLogIn(FilterLoggingRequest req);
     public Task<APIResponse> GetListAction(FilterLoggingRequest req);
     public Task<APIResponse> GetListCallApi(FilterLoggingRequest req);
+    public Task<APIResponse> GetListLogInCurrentAdmin(FilterLoggingRequest request, string username);
 }
