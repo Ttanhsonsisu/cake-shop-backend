@@ -2,7 +2,7 @@
 
 namespace cake_shop_back_end.Models.Discount;
 
-public class DiscountCampaign : MasterCommonModel
+public class DiscountCode : MasterCommonModel
 {
     public Guid id { get; set; } = new Guid();
     public string name { get; set; }

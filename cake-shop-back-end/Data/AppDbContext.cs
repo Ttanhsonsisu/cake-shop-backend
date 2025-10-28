@@ -26,17 +26,18 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<UserGroupPermission> UserGroupPermissions { get; set; }
     public DbSet<Function> Functions { get; set; }
     public DbSet<Action1> Actions { get; set; }
+    public DbSet<AddressInfo> AddressInfos { get; set; }
+    public DbSet<Customer> Customers { get; set; }
 
     // ===================================
     // 2. product management
     // ===================================
-    
+
     public DbSet<Category> Categories { get; set; }
     public DbSet<Tag> Tags { get; set; }
     public DbSet<ProductCake> ProductCakes { get; set; }
     public DbSet<ProductCakeCategory> ProductCakeCategories { get; set; }
     public DbSet<ProductImage> ProductImages { get; set; }
-
     public DbSet<Variant> Variants { get; set; }
     public DbSet<VariantImage> VariantImages { get; set; }
     public DbSet<Attribute> Attributes { get; set; }
@@ -89,9 +90,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<DiscountCampaign> discountCampaigns { get; set; }
     public DbSet<DiscountTarget> discountTargets { get; set; }
 
-    public DbSet<Customer> Customers { get; set; }
+
     public DbSet<Review> Reviews { get; set; }
-    public DbSet<AddressInfo> AddressInfos { get; set; }
+ 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
