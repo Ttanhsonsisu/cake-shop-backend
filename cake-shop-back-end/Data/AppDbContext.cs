@@ -70,6 +70,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<CatogoryCustomOrder> CatogoryCustomOrders { get; set; }
     public DbSet<CustomOrderDetail> CustomOrderDetails { get; set; }
     public DbSet<CustomOrderOption> CustomOrderOptions { get; set; }
+    
 
     // ===================================
     // 5. post & Feedback

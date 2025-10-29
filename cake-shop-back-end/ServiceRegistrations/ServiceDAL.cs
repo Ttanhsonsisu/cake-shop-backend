@@ -1,11 +1,13 @@
 ﻿using cake_shop_back_end.DataAccess.Cms;
 using cake_shop_back_end.DataAccess.Cms.Auth;
 using cake_shop_back_end.DataAccess.Cms.Common;
+using cake_shop_back_end.DataAccess.Cms.Configuration;
 using cake_shop_back_end.DataAccess.Cms.MasterData;
 
 using cake_shop_back_end.Extensions;
 using cake_shop_back_end.Helpers;
 using cake_shop_back_end.Interfaces.Cms.Auth;
+using cake_shop_back_end.Interfaces.Cms.Configuration;
 using cake_shop_back_end.Interfaces.Common;
 using cake_shop_back_end.Interfaces.MasterData;
 
@@ -42,5 +44,9 @@ public static class ServiceDAL
         // extension 
         services.AddScoped<IEmailSender, EmailSender>();
 
+        // cms config
+        services.AddScoped<IDeliverySlot, DeliverySlotDataAccess>();
+        services.AddScoped<IDeliveryArea, DeliveryAreaDataAccess>();
+        services.AddScoped<IPaymentMethod, PaymentMethodDataAccess>();
     }
 }
