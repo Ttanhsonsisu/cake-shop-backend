@@ -94,21 +94,41 @@ public class AuthenticationController(
         };
 
         var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
+       // open transaction 
 
-        await _loggingHelpers.InsertLogging(new LoggingRequest
+        using var transaction = await _context.Database.BeginTransactionAsync();
+
+        try
         {
-            UserType = Consts.USER_TYPE_WEB_ADMIN,
-            IsCallApi = true,
-            ApiName = "/api/auth/adminLogin",
-            Actions = "Đăng nhập",
-            Application = "WEB ADMIN",
-            Content = loginResponse.ToString(),
-            Functions = "Hệ thống",
-            IsLogin = true,
-            ResultLogging = "Thành công",
-            UserCreated = checkUserName.username,
-            IP = remoteIP
-        });
+            checkUserName.last_login = DateTime.Now;
+            
+            await _context.SaveChangesAsync();
+
+            await _loggingHelpers.InsertLogging(new LoggingRequest
+            {
+                UserType = Consts.USER_TYPE_WEB_ADMIN,
+                IsCallApi = true,
+                ApiName = "/api/auth/adminLogin",
+                Actions = "Đăng nhập",
+                Application = "WEB ADMIN",
+                Content = loginResponse.ToString(),
+                Functions = "Hệ thống",
+                IsLogin = true,
+                ResultLogging = "Thành công",
+                UserCreated = checkUserName.username,
+                IP = remoteIP
+            });
+
+            await transaction.CommitAsync();
+            await transaction.DisposeAsync();
+        }
+        catch (Exception ex)
+        {
+            await transaction.RollbackAsync();
+            await transaction.DisposeAsync();
+
+            return new JsonResult(new APIResponse("ERROR_" + ex.Message.ToUpper())) { StatusCode = 200 };
+        }
 
         return new JsonResult(new APIResponse(loginResponse)) { StatusCode = 200 };
     }
@@ -274,6 +294,7 @@ public class AuthenticationController(
 
         try
         {
+            user.birth_date = userRequest.birth_date;
             user.full_name = userRequest.full_name;
             user.email = userRequest.email;
             user.phone = userRequest.phone;

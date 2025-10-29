@@ -45,5 +45,6 @@ public class User : MasterCommonModel
     public string? device_id { get; set; }
 
     public bool? is_delete { get; set; }
+    public DateTime? last_login { get; set; }
 
 }
