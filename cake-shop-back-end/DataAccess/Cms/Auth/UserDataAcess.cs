@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace cake_shop_back_end.DataAccess.Cms.Auth;
 
-public class UserDataAcess(AppDbContext _context, ICommonFunction _commonFunction) : IUser
+public partial class UserDataAccess(AppDbContext _context, ICommonFunction _commonFunction) : IUser
 {
     public async Task<APIResponse> ChangeStatusAsync(UserRequest req)
     {
