@@ -24,7 +24,7 @@ public static class ServiceDAL
         // authen 
         services.AddSingleton<IJwtAuth>(new Authen(key));
         services.AddScoped<IAction, ActionDataAccess>();
-        services.AddScoped<IUser, UserDataAcess>();
+        services.AddScoped<IUser, UserDataAccess>();
         services.AddScoped<IFunction, FunctionDataAccess>();
         services.AddScoped<IUserGroup, UserGroupDataAccess>();
 
