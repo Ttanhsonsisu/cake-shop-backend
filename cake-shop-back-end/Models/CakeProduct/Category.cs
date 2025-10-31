@@ -4,7 +4,7 @@ namespace cake_shop_back_end.Models.CakeProduct;
 
 public class Category : MasterCommonModel
 {
-    public int id { get; set; }
+    public Guid id { get; set; }
 
     public string code { get; set; } = null!;
 

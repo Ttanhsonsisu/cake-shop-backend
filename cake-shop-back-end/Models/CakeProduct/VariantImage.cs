@@ -6,7 +6,7 @@ public class VariantImage : MasterCommonModel
 {
     public long variant_image_id { get; set; }
 
-    public long? variant_id { get; set; }
+    public Guid? variant_id { get; set; }
 
     public string image_url { get; set; } = null!;
 

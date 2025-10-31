@@ -14,6 +14,5 @@ public class ProductCake : MasterCommonModel
 
     public string? SKU { get; set; }
 
-    public int category_id { get; set; }
     public string? storage { get; set; }
 }
