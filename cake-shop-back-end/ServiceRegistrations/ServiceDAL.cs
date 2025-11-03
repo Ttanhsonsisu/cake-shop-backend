@@ -1,5 +1,4 @@
-﻿using cake_shop_back_end.DataAccess.Cms;
-using cake_shop_back_end.DataAccess.Cms.Auth;
+﻿using cake_shop_back_end.DataAccess.Cms.Auth;
 using cake_shop_back_end.DataAccess.Cms.Common;
 using cake_shop_back_end.DataAccess.Cms.Configuration;
 using cake_shop_back_end.DataAccess.Cms.MasterData;
@@ -52,6 +51,7 @@ public static class ServiceDAL
 
         //cms core manager
         services.AddScoped<ICategory, CategoryDataAccess>();
+        services.AddScoped<IAttribute,  AttributeDataAccess>();
 
     }
 }

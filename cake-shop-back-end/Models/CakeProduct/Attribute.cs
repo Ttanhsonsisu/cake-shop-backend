@@ -11,10 +11,10 @@ public class Attribute : MasterCommonModel
     public string name { get; set; } = null!;
 
     public string? description { get; set; }
-
+    
     public int? status { get; set; }
 
     public int? orders { get; set; }
 
-    public string? values { get; set; }
+    public bool? allow_multiple_values { get; set; } = false;
 }
