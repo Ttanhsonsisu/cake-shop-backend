@@ -52,6 +52,7 @@ public static class ServiceDAL
         //cms core manager
         services.AddScoped<ICategory, CategoryDataAccess>();
         services.AddScoped<IAttribute,  AttributeDataAccess>();
+        services.AddScoped<IAttributeValue, AttributeValueDataAccess>();
 
     }
 }
