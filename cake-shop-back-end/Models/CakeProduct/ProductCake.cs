@@ -13,4 +13,6 @@ public class ProductCake : MasterCommonModel
     public decimal? base_price { get; set; }
 
     public string? storage { get; set; }
+    public int? status { get; set; }
+    public bool? is_visible { get; set; }
 }
