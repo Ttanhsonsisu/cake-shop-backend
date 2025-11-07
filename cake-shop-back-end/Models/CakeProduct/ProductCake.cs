@@ -12,7 +12,5 @@ public class ProductCake : MasterCommonModel
 
     public decimal? base_price { get; set; }
 
-    public string? SKU { get; set; }
-
     public string? storage { get; set; }
 }
