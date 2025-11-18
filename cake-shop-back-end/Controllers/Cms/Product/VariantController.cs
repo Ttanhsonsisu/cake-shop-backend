@@ -98,4 +98,6 @@ public class VariantController(IVariant _variant, ILoggingHelpers _loggingHelper
 
         return new JsonResult(data) { StatusCode = 200 };
     }
+
+
 }

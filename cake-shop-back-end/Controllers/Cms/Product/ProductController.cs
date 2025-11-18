@@ -44,6 +44,34 @@ public class ProductController(IProductCake _productCake, ILoggingHelpers _loggi
         return new JsonResult(data) { StatusCode = 200 };
     }
 
+    [Route("publishProduct")]
+    [HttpPost]
+    public async Task<JsonResult> PublishProduct(ProductCakeRequest request)
+    {
+        var username = User.Claims.Where(p => p.Type.Equals(ClaimTypes.Name)).FirstOrDefault();
+
+        APIResponse data = await _productCake.PublishProductAsync(request, username.Value);
+
+        var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
+
+        await _loggingHelpers.InsertLogging(new LoggingRequest
+        {
+            UserType = Consts.USER_TYPE_WEB_ADMIN,
+            IsCallApi = true,
+            ApiName = "api/cms/product/publishProduct",
+            Actions = "Phát hành sản phẩm mới",
+            Application = "WEB ADMIN",
+            Content = "Phát hành sản phẩm mới",
+            Functions = "Danh mục",
+            IsLogin = false,
+            ResultLogging = data.Code == "200" ? "Thành công" : "Thất bại",
+            UserCreated = username?.Value ?? "Unknown",
+            IP = remoteIP
+        });
+
+        return new JsonResult(data) { StatusCode = 200 };
+    }
+
     [Route("list")]
     [HttpPost]
     public async Task<JsonResult> GetList(ProductCakeRequest request)
