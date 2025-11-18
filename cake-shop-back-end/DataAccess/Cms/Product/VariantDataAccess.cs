@@ -1,6 +1,7 @@
 ﻿using cake_shop_back_end.Data;
 using cake_shop_back_end.DataObjects.Requests.Product;
 using cake_shop_back_end.DataObjects.Responses;
+using cake_shop_back_end.Extensions;
 using cake_shop_back_end.Interfaces.Cms.Product;
 using cake_shop_back_end.Models.CakeProduct;
 using Microsoft.EntityFrameworkCore;
@@ -64,9 +65,9 @@ public class VariantDataAccess(AppDbContext _context) : IVariant
             // create new variant
             var newVariant = new Variant();
             newVariant.id = Guid.NewGuid();
-            newVariant.product_id = request.ProductId;
-            newVariant.sku = request.Sku;
-            newVariant.price = request.Price;
+            newVariant.product_id = (Guid)request.ProductId;
+            newVariant.sku = (string)request.Sku;
+            newVariant.price = (decimal)request.Price;
 
             newVariant.date_updated = DateTime.Now;
             newVariant.user_updated = username;
@@ -75,7 +76,7 @@ public class VariantDataAccess(AppDbContext _context) : IVariant
 
             await _context.Variants.AddAsync(newVariant);
             // create attribute in variant
-            
+
             var variantAttributeValue = new List<VariantAttributeValue>();
 
             foreach (var attr in request.VariantAtributeValues)
@@ -101,6 +102,7 @@ public class VariantDataAccess(AppDbContext _context) : IVariant
 
             await _context.VariantAttributeValues.AddRangeAsync(variantAttributeValue);
 
+            // update count variant in product
             dataExists.variants = dataExists.variants != null ? dataExists.variants + 1 : 1;
             _context.ProductCakes.Update(dataExists);
 
@@ -140,19 +142,131 @@ public class VariantDataAccess(AppDbContext _context) : IVariant
         return new APIResponse(200);
     }
 
-    public Task<APIResponse> GetDetailAsync(Guid id)
+    public async Task<APIResponse> GetDetailAsync(Guid id)
     {
-        throw new NotImplementedException();
+        // validate request 
+        if (id == Guid.Empty)
+        {
+            return new APIResponse("ERROR_INVALID_REQUEST");
+        }
+
+        var data = await (from v in _context.Variants
+                          where v.id == id 
+                          join p in _context.ProductCakes on v.product_id equals p.id into ps
+                          from p in ps.DefaultIfEmpty()
+                          select new 
+                          {
+                              id = v.id,
+                              sku = v.sku,
+                              price = v.price,
+                              product_id = v.product_id,
+                              product_name = p == null ? "" : p.name,
+                              date_created = v.date_created,
+                              date_updated = v.date_updated,
+                              attributes = (
+                                  from vav in _context.VariantAttributeValues
+                                  where vav.variant_id == v.id 
+                                  join a in _context.Attributes on vav.attribute_id equals a.id
+                                  join av in _context.AttributeValues on vav.attribute_value_id equals av.id
+                                  group new { a, av } by new { a.id, a.name, a.code } into g
+                                  select new 
+                                  {
+                                      attribute_id = g.Key.id,
+                                      attribute_name = g.Key.name,
+                                      attribute_code = g.Key.code,
+                                      values = g.Select(x => new 
+                                      {
+                                          value_id = x.av.id,
+                                          value = x.av.value
+                                      }).ToList()
+                                  }
+                              ).ToList() 
+
+                          }).FirstOrDefaultAsync(); 
+
+        if (data == null)
+        {
+            return new APIResponse("ERROR_NOT_FOUND");
+        }
+
+        return new APIResponse(data);
     }
 
-    public Task<APIResponse> GetListAsync(VariantRequest request)
+    public async Task<APIResponse> GetListAsync(VariantRequest request)
     {
-        throw new NotImplementedException();
-    }
+        // Default PageNo, PageSize
+        if (request.PageSize < 1)
+        {
+            request.PageSize = Consts.PAGE_SIZE;
+        }
 
-    public Task<APIResponse> PublishProductAsync(VariantRequest request, string username)
-    {
-        throw new NotImplementedException();
+        if (request.PageNo < 1)
+        {
+            request.PageNo = 1;
+        }
+
+        int skipElements = (request.PageNo - 1) * request.PageSize;
+
+        // Base query: variants with product name
+        var query = from v in _context.Variants
+                    join p in _context.ProductCakes on v.product_id equals p.id into ps
+                    from p in ps.DefaultIfEmpty()
+                    orderby v.date_created descending
+                    select new
+                    {
+                        id = v.id,
+                        sku = v.sku,
+                        price = v.price,
+                        product_id = v.product_id,
+                        product_name = p == null ? "" : p.name,
+                        date_created = v.date_created,
+                        date_updated = v.date_updated
+                    };
+
+        // Filters
+        if (request.Id != null && request.Id != Guid.Empty)
+        {
+            query = query.Where(x => x.id == request.Id);
+        }
+
+        if (request.ProductId != Guid.Empty && request.ProductId != null)
+        {
+            query = query.Where(x => x.product_id == request.ProductId);
+        }
+
+        if (!string.IsNullOrEmpty(request.Sku))
+        {
+            var pattern = $"%{request.Sku}%";
+            query = query.Where(x => EF.Functions.Like(x.sku, pattern));
+        }
+
+        if (request.Price > 0)
+        {
+            query = query.Where(x => x.price == request.Price);
+        }
+
+        // Count & paging
+        int countElements = await query.CountAsync();
+
+        int totalPage = countElements > 0
+            ? (int)Math.Ceiling(countElements / (double)request.PageSize)
+            : 0;
+
+        var dataList = await query
+            .Skip(skipElements)
+            .Take(request.PageSize)
+            .ToListAsync();
+
+        var dataResult = new DataListResponse
+        {
+            PageNo = request.PageNo,
+            PageSize = request.PageSize,
+            TotalElements = countElements,
+            TotalPage = totalPage,
+            Data = dataList
+        };
+
+        return new APIResponse(dataResult);
     }
 
     public Task<APIResponse> UpdateAsync(VariantRequest request, string username)

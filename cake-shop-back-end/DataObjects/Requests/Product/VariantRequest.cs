@@ -6,13 +6,13 @@ public class VariantRequest : PaggingRequest
 {
     public Guid? Id { get; set; }
 
-    public Guid ProductId { get; set; }
+    public Guid? ProductId { get; set; }
 
-    public string Sku { get; set; } = null!;
+    public string? Sku { get; set; } = null!;
 
-    public decimal Price { get; set; }
+    public decimal? Price { get; set; }
 
-    public List<VariantAtributeValueRequest> VariantAtributeValues { get; set; } = new();
+    public List<VariantAtributeValueRequest>? VariantAtributeValues { get; set; } = new();
 
 }
 

@@ -18,7 +18,7 @@ public class ProductController(IProductCake _productCake, ILoggingHelpers _loggi
 {
     [Route("create")]
     [HttpPost]
-    public async Task<JsonResult> GetList(ProductCakeRequest request)
+    public async Task<JsonResult> CreateAsync(ProductCakeRequest request)
     {
         var username = User.Claims.Where(p => p.Type.Equals(ClaimTypes.Name)).FirstOrDefault();
 
@@ -43,4 +43,62 @@ public class ProductController(IProductCake _productCake, ILoggingHelpers _loggi
 
         return new JsonResult(data) { StatusCode = 200 };
     }
+
+    [Route("list")]
+    [HttpPost]
+    public async Task<JsonResult> GetList(ProductCakeRequest request)
+    {
+        var username = User.Claims.Where(p => p.Type.Equals(ClaimTypes.Name)).FirstOrDefault();
+
+        APIResponse data = await _productCake.GetListAsync(request);
+
+        var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
+
+        await _loggingHelpers.InsertLogging(new LoggingRequest
+        {
+            UserType = Consts.USER_TYPE_WEB_ADMIN,
+            IsCallApi = true,
+            ApiName = "api/cms/product/create",
+            Actions = "Tạo mới sản phẩm",
+            Application = "WEB ADMIN",
+            Content = "Tạo mới sản phẩm",
+            Functions = "Danh mục",
+            IsLogin = false,
+            ResultLogging = data.Code == "200" ? "Thành công" : "Thất bại",
+            UserCreated = username?.Value ?? "Unknown",
+            IP = remoteIP
+        });
+
+        return new JsonResult(data) { StatusCode = 200 };
+    }
+
+    [HttpGet("{id}")]
+    public async Task<JsonResult> GetList(Guid id)
+    {
+        var username = User.Claims.Where(p => p.Type.Equals(ClaimTypes.Name)).FirstOrDefault();
+
+        APIResponse data = await _productCake.GetDetailAsync(id);
+
+        var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
+
+        await _loggingHelpers.InsertLogging(new LoggingRequest
+        {
+            UserType = Consts.USER_TYPE_WEB_ADMIN,
+            IsCallApi = true,
+            ApiName = "api/cms/product/" + id,
+            Actions = "Chi tiết sản phẩm",
+            Application = "WEB ADMIN",
+            Content = "Chi tiết sản phẩm",
+            Functions = "Danh mục",
+            IsLogin = false,
+            ResultLogging = data.Code == "200" ? "Thành công" : "Thất bại",
+            UserCreated = username?.Value ?? "Unknown",
+            IP = remoteIP
+        });
+
+        return new JsonResult(data) { StatusCode = 200 };
+    }
+
+
+
 }
