@@ -99,5 +99,60 @@ public class VariantController(IVariant _variant, ILoggingHelpers _loggingHelper
         return new JsonResult(data) { StatusCode = 200 };
     }
 
+    [Route("addImage")]
+    [HttpPost]
+    public async Task<JsonResult> AddImageVariantAsync(ProductImageRequest request)
+    {
+        var username = User.Claims.Where(p => p.Type.Equals(ClaimTypes.Name)).FirstOrDefault();
+
+        APIResponse data = await _variant.AddImageAsync(request, username.Value);
+
+        var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
+
+        await _loggingHelpers.InsertLogging(new LoggingRequest
+        {
+            UserType = Consts.USER_TYPE_WEB_ADMIN,
+            IsCallApi = true,
+            ApiName = "api/cms/variant/addImage",
+            Actions = "Thêm ảnh vào variant",
+            Application = "WEB ADMIN",
+            Content = "Thêm ảnh vào variant",
+            Functions = "Danh mục",
+            IsLogin = false,
+            ResultLogging = data.Code == "200" ? "Thành công" : "Thất bại",
+            UserCreated = username?.Value ?? "Unknown",
+            IP = remoteIP
+        });
+
+        return new JsonResult(data) { StatusCode = 200 };
+    }
+
+    [Route("delteImage")]
+    [HttpPost]
+    public async Task<JsonResult> DeleteImageVariantAsync(ProductImageRequest request)
+    {
+        var username = User.Claims.Where(p => p.Type.Equals(ClaimTypes.Name)).FirstOrDefault();
+
+        APIResponse data = await _variant.RemoveImageAsync(request, username.Value);
+
+        var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
+
+        await _loggingHelpers.InsertLogging(new LoggingRequest
+        {
+            UserType = Consts.USER_TYPE_WEB_ADMIN,
+            IsCallApi = true,
+            ApiName = "api/cms/variant/delteImage",
+            Actions = "Xóa ảnh variant",
+            Application = "WEB ADMIN",
+            Content = "Thêm ảnh vào variant",
+            Functions = "Danh mục",
+            IsLogin = false,
+            ResultLogging = data.Code == "200" ? "Thành công" : "Thất bại",
+            UserCreated = username?.Value ?? "Unknown",
+            IP = remoteIP
+        });
+
+        return new JsonResult(data) { StatusCode = 200 };
+    }
 
 }

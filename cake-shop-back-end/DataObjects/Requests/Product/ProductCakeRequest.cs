@@ -18,3 +18,11 @@ public class ProductCakeRequest : PaggingRequest
     public int? Variants { get; set; }
     public List<Guid>? Categories { get; set; }
 }
+
+public class ProductImageRequest
+{
+    public long? Id { get; set; }
+    public Guid? ProductId { get; set; }
+    public string? ImageUrl { get; set; } = null!;
+    public Guid? VariantId { get; set; }
+}

@@ -10,4 +10,6 @@ public interface IVariant
     public Task<APIResponse> CreateDraftAsync(VariantRequest request, string username);
     public Task<APIResponse> UpdateAsync(VariantRequest request, string username);
     public Task<APIResponse> DeleteAsync(VariantRequest request, string username);
+    public Task<APIResponse> AddImageAsync(ProductImageRequest request, string username);
+    public Task<APIResponse> RemoveImageAsync(ProductImageRequest request, string username);
 }

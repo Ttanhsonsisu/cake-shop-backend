@@ -5,6 +5,7 @@ using cake_shop_back_end.Extensions;
 using cake_shop_back_end.Interfaces.Cms.Product;
 using cake_shop_back_end.Models.CakeProduct;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace cake_shop_back_end.DataAccess.Cms.Product;
 
@@ -363,5 +364,139 @@ public class ProductCakeDataAccess(AppDbContext _context) : IProductCake
         {
             return new APIResponse("INTERNAL_SERVER_ERROR");
         }
+    }
+
+    public async Task<APIResponse> AddProductGalleryAsync(ProductImageRequest request, string username)
+    {
+        //validate request here
+        if (request.ProductId == null || request.ProductId == Guid.Empty)
+        {
+            return new APIResponse("ERROR_MISSING_PRODUCT_ID");
+        }
+        if (request.ImageUrl == null || request.ImageUrl.Length == 0)
+        {
+            return new APIResponse("ERROR_MISSING_IMAGE_URL");
+        }
+
+        var data = new ProductImage();
+        data.product_id = request.ProductId;
+        data.image_url = request.ImageUrl;
+        data.user_created = username;
+        data.date_created = DateTime.UtcNow;
+        data.user_updated = username;
+        data.date_updated = DateTime.UtcNow;
+
+        try
+        {
+            await _context.ProductImages.AddAsync(data);
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception)
+        {
+            return new APIResponse("INTERNAL_SERVER_ERROR");
+        }
+
+        return new APIResponse(200);
+    }
+
+    public async Task<APIResponse> AddProductGallerysAsync(List<ProductImageRequest> request, string username)
+    {
+        // validate request here
+        if (request == null || !request.Any())
+        {
+            return new APIResponse("ERROR_MISSING_REQUEST_DATA");
+        }
+        if (request.Count == 0)
+        {
+            return new APIResponse("ERROR_MISSING_REQUEST_DATA");
+        }
+
+        var data = new List<ProductImage>();
+        foreach (var image in request)
+        {
+
+            if (image.ProductId == null || image.ProductId == Guid.Empty)
+            {
+                return new APIResponse("ERROR_MISSING_PRODUCT_ID");
+            }
+            if (image.ImageUrl == null || image.ImageUrl.Length == 0)
+            {
+                return new APIResponse("ERROR_MISSING_IMAGE_URL");
+            }
+            data.Add(new ProductImage
+            {
+                product_id = image.ProductId,
+                image_url = image.ImageUrl,
+                user_created = username,
+                date_created = DateTime.UtcNow,
+                user_updated = username,
+                date_updated = DateTime.UtcNow
+            });
+        }
+        try
+        {
+            await _context.ProductImages.AddRangeAsync(data);
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception)
+        {
+            return new APIResponse("INTERNAL_SERVER_ERROR");
+        }
+
+        return new APIResponse(200);
+    }
+    public async Task<APIResponse> RemoveProductGalleryAsync(ProductImageRequest request, string username)
+    {
+        // validate request here
+        if (request.Id == null || request.Id < 0)
+        {
+            return new APIResponse("ERROR_MISSING_ID");
+        }
+        var image = await _context.ProductImages.FindAsync(request.Id);
+        if (image == null)
+        {
+            return new APIResponse("ERORR_IMAGE_NOT_EIXSTS");
+        }
+
+        try
+        {
+            _context.ProductImages.Remove(image);
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception)
+        {
+            return new APIResponse("INTERNAL_SERVER_ERROR");
+        }
+
+        return new APIResponse(200);
+    }
+
+    public async Task<APIResponse> RemoveProductGallerysAsync(List<long> request, string username)
+    {
+        // validate request here
+        if (request == null || !request.Any())
+        {
+            return new APIResponse("ERROR_MISSING_REQUEST_DATA");
+        }
+        var data = new List<ProductImage>();
+        foreach (var imgReq in request)
+        {
+            var image = await _context.ProductImages.FindAsync(imgReq);
+            if (image != null)
+            {
+                data.Add(image);
+            }
+        }
+        try
+        {
+            _context.ProductImages.RemoveRange(data);
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception)
+        {
+            return new APIResponse("INTERNAL_SERVER_ERROR");
+        }
+
+        return new APIResponse(200);
     }
 }

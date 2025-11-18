@@ -273,4 +273,60 @@ public class VariantDataAccess(AppDbContext _context) : IVariant
     {
         throw new NotImplementedException();
     }
+
+    public async Task<APIResponse> AddImageAsync(ProductImageRequest request, string username)
+    {
+        // validate request
+        if (request.VariantId == null || request.VariantId == Guid.Empty || string.IsNullOrEmpty(request.ImageUrl))
+        {
+            return new APIResponse("ERROR_INVALID_REQUEST");
+        }
+        // check exists product id
+        var dataExists = await _context.Variants.FindAsync(request.VariantId);
+        if (dataExists == null) {
+            return new APIResponse("ERROR_PRODUCT_NOT_EXISTS");
+        }
+        // save image
+        var data = new VariantImage();
+        data.variant_id = request.VariantId;
+        data.image_url = request.ImageUrl;
+        data.date_created = DateTime.Now;
+        data.user_created = username;
+
+        try
+        {
+            await _context.VariantImages.AddAsync(data);
+            await  _context.SaveChangesAsync();
+        }
+        catch (Exception)
+        {
+            return new APIResponse("ERROR_SYSTEM_EXCEPTION");
+        }
+
+        return new APIResponse(200);
+    }
+
+    public async Task<APIResponse> RemoveImageAsync(ProductImageRequest request, string username)
+    {
+        // validate request
+        if (request.Id == null || request.Id < 0)
+        {
+            return new APIResponse("ERROR_INVALID_REQUEST");
+        }
+        var dataDelete = await _context.VariantImages.FindAsync(request.Id);
+        if (dataDelete == null)
+        {
+            return new APIResponse("ERROR_NOT_FOUND");
+        }
+        try
+        {
+            _context.VariantImages.Remove(dataDelete);
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            return new APIResponse("ERROR_SYSTEM_EXCEPTION");
+        }
+        return new APIResponse(200);
+    }
 }
