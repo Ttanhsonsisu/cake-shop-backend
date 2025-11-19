@@ -18,4 +18,6 @@ public class CustomerRequest : PaggingRequest
     public string? ZipCode { get; set; }
     public int? Status { get; set; }
     public string? CompanyName { get; set; }
+    public string? Password { get; set; }   
+    public Guid? UserGroupId { get; set; }
 }

@@ -1,6 +1,7 @@
 ﻿using cake_shop_back_end.DataAccess.Cms.Auth;
 using cake_shop_back_end.DataAccess.Cms.Common;
 using cake_shop_back_end.DataAccess.Cms.Configuration;
+using cake_shop_back_end.DataAccess.Cms.Customer;
 using cake_shop_back_end.DataAccess.Cms.MasterData;
 using cake_shop_back_end.DataAccess.Cms.Product;
 using cake_shop_back_end.Extensions;
@@ -27,6 +28,7 @@ public static class ServiceDAL
         services.AddScoped<IUser, UserDataAccess>();
         services.AddScoped<IFunction, FunctionDataAccess>();
         services.AddScoped<IUserGroup, UserGroupDataAccess>();
+        services.AddScoped<ICustomer, CustomerDataAccess>();
 
 
 

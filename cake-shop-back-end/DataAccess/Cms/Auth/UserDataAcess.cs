@@ -554,7 +554,7 @@ public partial class UserDataAccess(AppDbContext _context, ICommonFunction _comm
        
             await _context.SaveChangesAsync();
 
-            var customer = new Customer();
+            var customer = new cake_shop_back_end.Models.auth.Customer();
             customer.user_id = user.id;
             customer.email = req.Email;
             customer.date_created = DateTime.Now;
