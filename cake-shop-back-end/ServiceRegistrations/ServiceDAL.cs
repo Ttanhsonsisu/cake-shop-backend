@@ -55,6 +55,8 @@ public static class ServiceDAL
         services.AddScoped<ICategory, CategoryDataAccess>();
         services.AddScoped<IAttribute,  AttributeDataAccess>();
         services.AddScoped<IAttributeValue, AttributeValueDataAccess>();
+        services.AddScoped<IProductCake, ProductCakeDataAccess>();
+        services.AddScoped<IVariant, VariantDataAccess>();
 
     }
 }
