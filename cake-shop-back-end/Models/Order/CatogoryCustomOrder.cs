@@ -2,7 +2,7 @@
 
 namespace cake_shop_back_end.Models.Order;
 
-public class CatogoryCustomOrder : MasterCommonModel
+public class CategoryCustomOrder : MasterCommonModel
 {
     public int id { get; set; }
     public string code { get; set; }
