@@ -155,4 +155,32 @@ public class CustomOrderOptionController(
 
         return new JsonResult(data) { StatusCode = 200 };
     }
+
+    [Route("changeStatus")]
+    [HttpPost]
+    public async Task<JsonResult> ChangeStatusAsync(CustomOrderOptionRequest request)
+    {
+        var username = User.Claims.Where(p => p.Type.Equals(ClaimTypes.Name)).FirstOrDefault();
+
+        APIResponse data = await _customOrderOption.ChangeStatusAsync(request, username.Value);
+
+        var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
+
+        await _loggingHelpers.InsertLogging(new LoggingRequest
+        {
+            UserType = Consts.USER_TYPE_WEB_ADMIN,
+            IsCallApi = true,
+            ApiName = "api/cms/customOrderOption/changeStatus",
+            Actions = "Thay đổi trạng thái mục bánh tự chọn",
+            Application = "WEB ADMIN",
+            Content = "Thay đổi trạng thái mục bánh tự chọn",
+            Functions = "Danh mục",
+            IsLogin = false,
+            ResultLogging = data.Code == "200" ? "Thành công" : "Thất bại",
+            UserCreated = username?.Value ?? "Unknown",
+            IP = remoteIP
+        });
+
+        return new JsonResult(data) { StatusCode = 200 };
+    }
 }

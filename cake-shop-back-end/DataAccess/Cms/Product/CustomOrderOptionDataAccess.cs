@@ -181,4 +181,25 @@ public class CustomOrderOptionDataAccess(AppDbContext _context) : ICustomOrderOp
             return new APIResponse("INTERNAL_SERVER_ERROR");
         }
     }
+
+    public async Task<APIResponse> ChangeStatusAsync(CustomOrderOptionRequest request, string username)
+    {
+        // validate
+        if (request.Id == null || request.Id <= 0) return new APIResponse("ERROR_INVALID_REQUEST");
+        var data = await _context.Set<CustomOrderOption>().FindAsync(request.Id.Value);
+
+        if (data == null) return new APIResponse("NOT_FOUND");
+
+        data.is_active = request.IsActive ?? data.is_active;
+
+        try
+        {
+            await _context.SaveChangesAsync().ConfigureAwait(false);
+        }
+        catch (Exception)
+        {
+            return new APIResponse("INTERNAL_SERVER_ERROR");
+        }
+        return new APIResponse(200);
+    }
 }

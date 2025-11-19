@@ -10,4 +10,5 @@ public interface ICustomOrderOption
     Task<APIResponse> CreateAsync(CustomOrderOptionRequest request, string username);
     Task<APIResponse> UpdateAsync(CustomOrderOptionRequest request, string username);
     Task<APIResponse> DeleteAsync(int id, string username);
+    Task<APIResponse> ChangeStatusAsync(CustomOrderOptionRequest request, string username);
 }
