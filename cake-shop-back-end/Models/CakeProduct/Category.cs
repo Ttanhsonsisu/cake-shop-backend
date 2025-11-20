@@ -23,4 +23,5 @@ public class Category : MasterCommonModel
     public int type { get; set; }
 
     public int? values { get; set; }
+    public string? image_url { get; set; }
 }

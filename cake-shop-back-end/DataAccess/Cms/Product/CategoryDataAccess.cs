@@ -99,7 +99,7 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
                 orders = request.Orders,
                 type = request.Type.Value,
                 values = request.Values,
-
+                image_url = request.ImageUrl,
                 date_created = DateTime.Now,
                 date_updated = DateTime.Now,
                 user_created = username,
@@ -166,6 +166,7 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
             data.status,
             data.is_popular,
             data.is_show,
+            data.image_url,
             data.orders,
             data.type,
             data.values
@@ -220,7 +221,8 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
             d.is_show,
             d.orders,
             d.type,
-            d.values
+            d.values,
+            d.image_url
         });
 
         int countElements = await projectedQuery.CountAsync();
@@ -296,6 +298,7 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
             data.type = request.Type.Value;
             data.values = request.Values;
             data.status = request.Status;
+            data.image_url = request.ImageUrl;
 
             data.user_updated = username;
             data.date_updated = DateTime.Now;
