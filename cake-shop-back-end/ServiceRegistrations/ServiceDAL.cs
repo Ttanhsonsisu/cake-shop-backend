@@ -3,6 +3,7 @@ using cake_shop_back_end.DataAccess.Cms.BusinessOperation;
 using cake_shop_back_end.DataAccess.Cms.Common;
 using cake_shop_back_end.DataAccess.Cms.Configuration;
 using cake_shop_back_end.DataAccess.Cms.Customer;
+using cake_shop_back_end.DataAccess.Cms.Marketing;
 using cake_shop_back_end.DataAccess.Cms.MasterData;
 using cake_shop_back_end.DataAccess.Cms.Order;
 using cake_shop_back_end.DataAccess.Cms.Product;
@@ -11,6 +12,7 @@ using cake_shop_back_end.Helpers;
 using cake_shop_back_end.Interfaces.Cms.Auth;
 using cake_shop_back_end.Interfaces.Cms.BusinessOperation;
 using cake_shop_back_end.Interfaces.Cms.Configuration;
+using cake_shop_back_end.Interfaces.Cms.Marketing;
 using cake_shop_back_end.Interfaces.Cms.Order;
 using cake_shop_back_end.Interfaces.Cms.Product;
 using cake_shop_back_end.Interfaces.Common;
@@ -68,6 +70,10 @@ public static class ServiceDAL
         // cms business operation
         services.AddScoped<IWebsiteImage, WebsiteImageDataAccess>();
 
+
+
+        // cms marketting
+        services.AddScoped<ICampaign, CampaignDataAccess>();
 
     }
 }
