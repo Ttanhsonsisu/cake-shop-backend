@@ -67,7 +67,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<OrderStatusHistory> OrderStatusHistories { get; set; }
     public DbSet<DeliverySchedule> DeliverySchedules { get; set; }
     public DbSet<DeliverySetting> DeliverySettings { get; set; }
-    public DbSet<CatogoryCustomOrder> CatogoryCustomOrders { get; set; }
+    public DbSet<CategoryCustomOrder> CategoryCustomOrders { get; set; }
     public DbSet<CustomOrderDetail> CustomOrderDetails { get; set; }
     public DbSet<CustomOrderOption> CustomOrderOptions { get; set; }
     
@@ -188,7 +188,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         modelBuilder.Entity<OrderStatusHistory>().ToTable("OrderStatusHistory").HasKey(v => v.id);
         modelBuilder.Entity<DeliverySchedule>().ToTable("DeliverySchedule").HasKey(v => v.id); 
         modelBuilder.Entity<DeliverySetting>().ToTable("DeliverySetting").HasKey(v => v.id); 
-        modelBuilder.Entity<CatogoryCustomOrder>().ToTable("CatogoryCustomOrder").HasKey(v => v.id);  
+        modelBuilder.Entity<CategoryCustomOrder>().ToTable("CatogoryCustomOrder").HasKey(v => v.id);  
         modelBuilder.Entity<CustomOrderDetail>().ToTable("CustomOrderDetail").HasKey(v => v.id);  
         modelBuilder.Entity<CustomOrderOption>().ToTable("CustomOrderOption").HasKey(v => v.id);  
 
