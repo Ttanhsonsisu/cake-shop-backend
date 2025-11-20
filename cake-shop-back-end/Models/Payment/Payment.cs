@@ -19,4 +19,9 @@ public class Payment : MasterCommonModel
     public DateTime? paid_date { get; set; }
 
     public string? note { get; set; }
+
+    public int? payment_type { get; set; }
+    public string? bank_code { get; set; }
+    public string? gateway_order_code { get; set; }
+    public string? gateway_response { get; set; }
 }

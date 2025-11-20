@@ -10,6 +10,8 @@ public class OrderItem : MasterCommonModel
     public Guid? variant_id { get; set; }
     public int quantity { get; set; } = 1;
     public decimal price { get; set; }
-
     public decimal total_price { get; set; }
+    // add
+    public string? product_name { get; set; } = string.Empty;
+    public string? variant_name { get;set; } = string.Empty;
 }
