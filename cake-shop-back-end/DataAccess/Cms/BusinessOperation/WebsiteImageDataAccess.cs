@@ -1,32 +1,31 @@
 ﻿using cake_shop_back_end.Data;
-using cake_shop_back_end.DataObjects.Requests.Product;
+using cake_shop_back_end.DataObjects.Requests.BusinessOperation;
 using cake_shop_back_end.DataObjects.Responses;
 using cake_shop_back_end.Extensions;
-using cake_shop_back_end.Interfaces.Cms.Product;
-using cake_shop_back_end.Models.CakeProduct;
+using cake_shop_back_end.Interfaces.Cms.BusinessOperation;
+using cake_shop_back_end.Models.Common;
 using Microsoft.EntityFrameworkCore;
 
-namespace cake_shop_back_end.DataAccess.Cms.Product;
+namespace cake_shop_back_end.DataAccess.Cms.BusinessOperation;
 
-public class CategoryDataAccess(AppDbContext _context) : ICategory
+public class WebsiteImageDataAccess(AppDbContext _context) : IWebsiteImage
 {
-    public async Task<APIResponse> ChangeStatusAsync(CategoryRequest req, string username, string type)
+    public async Task<APIResponse> ChangeStatusAsync(WebsiteImageRequest request, string username)
     {
-
-        if (req == null)
+        if (request == null)
         {
             return new APIResponse("ERROR_REQUEST_IS_NULL");
         }
-        if (req.Id == null)
+        if (request.Id == null)
         {
             return new APIResponse("ERROR_ID_MISSING");
         }
-        if (req.Status == null && req.IsPopular == null && req.IsShow == null)
+        if (request.Status == null)
         {
             return new APIResponse("ERROR_STATUS_MISSING");
         }
 
-        var data = await _context.Categories.FindAsync(req.Id);
+        var data = await _context.WebSiteImgages.FindAsync(request.Id);
         if (data == null)
         {
             return new APIResponse("ERROR_ID_NOT_EXISTS");
@@ -34,17 +33,13 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
 
         try
         {
-            switch (type)
+            // Logic change status đơn giản (vì interface không có param 'type' như category)
+            data.status = (int)request.Status;
+
+            // Nếu có yêu cầu active/inactive đi kèm
+            if (request.IsActive != null)
             {
-                case "POPULAR":
-                    data.is_popular = (bool)req.IsPopular;
-                    break;
-                case "SHOW":
-                    data.is_show = (bool) req.IsShow;
-                    break;
-                default:
-                    data.status = (int)req.Status;
-                    break;
+                data.is_active = (bool)request.IsActive;
             }
 
             data.date_updated = DateTime.Now;
@@ -59,7 +54,7 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
         return new APIResponse(200);
     }
 
-    public async Task<APIResponse> CreateAsync(CategoryRequest request, string username)
+    public async Task<APIResponse> CreateAsync(WebsiteImageRequest request, string username)
     {
         if (request == null)
         {
@@ -74,13 +69,10 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
         {
             return new APIResponse("ERROR_CODE_REQUIRED");
         }
-        if (request.Type == null)
-        {
-            return new APIResponse("ERROR_TYPE_REQUIRED");
-        }
 
-        var existingCode = await _context.Categories
+        var existingCode = await _context.WebSiteImgages
             .AnyAsync(x => x.code.ToLower() == request.Code.ToLower());
+
         if (existingCode)
         {
             return new APIResponse("ERROR_CODE_EXISTS");
@@ -88,25 +80,26 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
 
         try
         {
-            var data = new Category
+            var data = new WebSiteImgage
             {
                 code = request.Code,
                 name = request.Name,
-                description = request.Description,
-                status = request.Status ?? 1,
-                is_popular = request.IsPopular ?? false,
-                is_show = request.IsShow ?? true,
-                orders = request.Orders,
-                type = request.Type.Value,
-                values = request.Values,
+                status = request.Status ?? 1, // Mặc định
+                start_date = request.StartDate,
                 image_url = request.ImageUrl,
+                end_date = request.EndDate,
+                display_type = request.DisplayType,
+                is_active = request.IsActive ?? true,
+                description = request.Description,
+                orders = request.Orders,
+
                 date_created = DateTime.Now,
                 date_updated = DateTime.Now,
                 user_created = username,
                 user_updated = username
             };
 
-            await _context.Categories.AddAsync(data); 
+            await _context.WebSiteImgages.AddAsync(data);
             await _context.SaveChangesAsync();
         }
         catch (Exception ex)
@@ -117,19 +110,19 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
         return new APIResponse(200);
     }
 
-    public async Task<APIResponse> DeleteAsync(CategoryRequest req, string username)
+    public async Task<APIResponse> DeleteAsync(WebsiteImageRequest request, string username)
     {
-        if (req == null)
+        if (request == null)
         {
             return new APIResponse("ERROR_REQUEST_NULL");
         }
 
-        if (req.Id == null)
+        if (request.Id == null)
         {
             return new APIResponse("ERROR_MISSING_ID");
         }
 
-        var data = await _context.Categories.FindAsync(req.Id);
+        var data = await _context.WebSiteImgages.FindAsync(request.Id);
         if (data == null)
         {
             return new APIResponse("ERROR_ID_NOT_EXISTS");
@@ -137,20 +130,20 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
 
         try
         {
-            _context.Categories.Remove(data);
+            _context.WebSiteImgages.Remove(data);
             await _context.SaveChangesAsync();
         }
         catch (Exception ex)
         {
-            return new APIResponse("ERORR " + ex.Message.ToString().ToUpper());
+            return new APIResponse("ERROR " + ex.Message.ToString().ToUpper());
         }
 
         return new APIResponse(200);
     }
 
-    public async Task<APIResponse> GetDetailAsync(Guid id)
+    public async Task<APIResponse> Detail(int id)
     {
-        var data = await _context.Categories.FindAsync(id);
+        var data = await _context.WebSiteImgages.FindAsync(id);
 
         if (data == null)
         {
@@ -162,21 +155,22 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
             data.id,
             data.code,
             data.name,
-            data.description,
             data.status,
-            data.is_popular,
-            data.is_show,
+            data.start_date,
             data.image_url,
-            data.orders,
-            data.type,
-            data.values
+            data.end_date,
+            data.display_type,
+            data.is_active,
+            data.description,
+            data.orders
         };
 
         return new APIResponse(response) { Code = "200" };
     }
 
-    public async Task<APIResponse> GetListAsync(CategoryRequest request)
+    public async Task<APIResponse> GetAllAsync(WebsiteImageRequest request)
     {
+        // Sử dụng logic phân trang giống mẫu
         if (request.PageSize < 1)
         {
             request.PageSize = Consts.PAGE_SIZE;
@@ -188,9 +182,10 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
 
         int skipElement = (request.PageNo - 1) * request.PageSize;
 
-        var query = _context.Categories.AsQueryable();
+        var query = _context.WebSiteImgages.AsQueryable();
 
-        if (request.Name != null && request.Name.Length > 0)
+        // Filter theo Name hoặc Code
+        if (!string.IsNullOrEmpty(request.Name))
         {
             string keyword = request.Name.ToLower();
             query = query.Where(x =>
@@ -205,24 +200,25 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
             query = query.Where(x => x.status == request.Status);
         }
 
-        if (request.Type != null)
+        if (request.DisplayType != null)
         {
-            query = query.Where(x => x.type == request.Type);
+            query = query.Where(x => x.display_type == request.DisplayType);
         }
 
+        // Projection (Select) để tối ưu performance giống mẫu
         var projectedQuery = query.Select(d => new
         {
             d.id,
             d.code,
             d.name,
-            d.description,
             d.status,
-            d.is_popular,
-            d.is_show,
-            d.orders,
-            d.type,
-            d.values,
-            d.image_url
+            d.start_date,
+            d.image_url,
+            d.end_date,
+            d.display_type,
+            d.is_active,
+            d.description,
+            d.orders
         });
 
         int countElements = await projectedQuery.CountAsync();
@@ -232,8 +228,8 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
             : 0;
 
         var data = await projectedQuery
-            .OrderBy(x => x.orders) 
-            .ThenBy(x => x.name) 
+            .OrderBy(x => x.orders)
+            .ThenByDescending(x => x.id) // Thường ID mới nhất lên đầu nếu cùng Order
             .Skip(skipElement)
             .Take(request.PageSize)
             .ToListAsync();
@@ -249,7 +245,7 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
         return new APIResponse(dataResult);
     }
 
-    public async Task<APIResponse> UpdateAsync(CategoryRequest request, string username)
+    public async Task<APIResponse> UpdateAsync(WebsiteImageRequest request, string username)
     {
         if (request == null)
         {
@@ -267,21 +263,18 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
         {
             return new APIResponse("ERROR_CODE_MISSING");
         }
-        if (request.Type == null)
-        {
-            return new APIResponse("ERROR_TYPE_REQUIRED");
-        }
 
-        var data = await _context.Categories.FindAsync(request.Id);
+        var data = await _context.WebSiteImgages.FindAsync(request.Id);
 
         if (data == null)
         {
             return new APIResponse("ERROR_ID_NOT_EXIST");
         }
 
-        // Kiểm tra code đã tồn tại (nhưng không phải là của chính nó)
-        var existingCode = await _context.Categories
+        // Kiểm tra trùng code (trừ chính nó)
+        var existingCode = await _context.WebSiteImgages
             .AnyAsync(x => x.code.ToLower() == request.Code.ToLower() && x.id != request.Id);
+
         if (existingCode)
         {
             return new APIResponse("ERROR_CODE_EXISTS");
@@ -292,13 +285,15 @@ public class CategoryDataAccess(AppDbContext _context) : ICategory
             data.code = request.Code;
             data.name = request.Name;
             data.description = request.Description;
-            data.is_popular = request.IsPopular ?? data.is_popular; 
-            data.is_show = request.IsShow ?? data.is_show; 
-            data.orders = request.Orders;
-            data.type = request.Type.Value;
-            data.values = request.Values;
-            data.status = request.Status;
+
+            if (request.Status != null) data.status = request.Status.Value;
+
+            data.start_date = request.StartDate;
+            data.end_date = request.EndDate;
             data.image_url = request.ImageUrl;
+            data.display_type = request.DisplayType;
+            data.is_active = request.IsActive ?? data.is_active;
+            data.orders = request.Orders;
 
             data.user_updated = username;
             data.date_updated = DateTime.Now;

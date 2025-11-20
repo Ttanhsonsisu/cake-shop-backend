@@ -15,5 +15,6 @@ public class CategoryRequest : PaggingRequest
     public int? Type { get; set; }
     public int? Values { get; set; }
     public string? TypeStatusChange { get; set; }
+    public string? ImageUrl { get; set; }
 }
     
