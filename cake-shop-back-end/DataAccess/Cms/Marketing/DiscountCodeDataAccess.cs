@@ -119,6 +119,7 @@ public class DiscountCodeDataAccess(AppDbContext _context) : IDiscountCode
                 {
                     id = newId,
                     name = request.Name,
+                    code = request.Code,
                     description = request.Description,
                     start_date = request.StartDate.Value,
                     end_date = request.EndDate.Value,
@@ -178,6 +179,7 @@ public class DiscountCodeDataAccess(AppDbContext _context) : IDiscountCode
                 // Update thông tin chính
                 entity.name = request.Name ?? entity.name;
                 entity.description = request.Description;
+                if (!string.IsNullOrEmpty(request.Code)) entity.code = request.Code;
                 if (request.StartDate.HasValue) entity.start_date = request.StartDate.Value;
                 if (request.EndDate.HasValue) entity.end_date = request.EndDate.Value;
                 if (request.IsActive.HasValue) entity.is_active = request.IsActive.Value;

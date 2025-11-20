@@ -170,7 +170,7 @@ public class OrderDataAccess(AppDbContext _context) : IOrder
             {
                 discountCode = await _context.DiscountCodes
                     .FirstOrDefaultAsync(x =>
-                        x.name == request.DiscountCode &&
+                        x.code == request.DiscountCode &&
                         x.is_active == true &&
                         x.start_date <= now &&
                         x.end_date >= now
