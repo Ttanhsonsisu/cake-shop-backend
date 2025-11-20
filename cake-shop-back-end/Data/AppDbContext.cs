@@ -217,7 +217,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
         // 1.7. Discount
         modelBuilder.Entity<DiscountCampaign>().ToTable("DiscountCampaign").HasKey(v => v.id);
-        modelBuilder.Entity<DiscountTarget>().ToTable("DiscountTarget").HasKey(v => v.id);
+        modelBuilder.Entity<DiscountTarget>().ToTable("DiscountTargets").HasKey(v => v.id);
         modelBuilder.Entity<DiscountCode>().ToTable("DiscountCode").HasKey(v => v.id);  
         modelBuilder.Entity<DiscountCodeTarget>().ToTable("DiscountCodeTarget").HasKey(v => v.id);  
 
