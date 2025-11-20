@@ -74,6 +74,7 @@ public static class ServiceDAL
 
         // cms marketting
         services.AddScoped<ICampaign, CampaignDataAccess>();
+        services.AddScoped<IDiscountCode, DiscountCodeDataAccess>();
 
     }
 }

@@ -13,4 +13,5 @@ public class DiscountCode : MasterCommonModel
     public string discount_type { get; set; }
     public decimal discount_value { get; set; }
     public decimal? max_discount { get; set; }
+    public int? status { get; set; }
 }
