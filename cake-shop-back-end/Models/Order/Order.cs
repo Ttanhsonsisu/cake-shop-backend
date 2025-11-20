@@ -20,5 +20,7 @@ public class Order : MasterCommonModel
     public decimal total_amount { get; set; }
     public int payment_method { get; set; }
     public int? order_status { get; set; }
+    public bool? is_delete { get; set; } = false;
+    public bool is_paid { get; set; } = false;
     public bool is_custom_order { get; set; } = false;
 }
