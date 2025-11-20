@@ -5,7 +5,8 @@ namespace cake_shop_back_end.Models.Order;
 public class Order : MasterCommonModel
 {
     public Guid id { get; set; } = new Guid();
-    public Guid user_id { get; set; }
+    public Guid? user_id { get; set; }
+    public string? order_no { get; set; } 
     public string? recipient_name { get; set; }
     public string? recipient_phone { get; set; }
     public string? recipient_address { get; set; }
@@ -18,6 +19,9 @@ public class Order : MasterCommonModel
     public int order_source { get; set; }
     public decimal delivery_fee { get; set; } = 0m;
     public decimal total_amount { get; set; }
+    public decimal? subtotal_amount { get; set; }
+    public decimal? discount_amount { get; set; } = 0m;
+    public decimal? tax_amount { get; set; } = 0m;
     public int payment_method { get; set; }
     public int? order_status { get; set; }
     public bool? is_delete { get; set; } = false;
