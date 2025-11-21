@@ -15,7 +15,7 @@ namespace cake_shop_back_end.Controllers.WepApp.Store;
 public class CustomerStoreController(ICustomer _customer, ILoggingHelpers _loggingHelpers) : ControllerBase
 {
     // get infor of customer by customer token
-    [HttpGet("customer-info")]
+    [HttpGet("customerInfo")]
     public async Task<JsonResult> GetCustomerInfo()
     {
         var customerToken = User.Claims.Where(p => p.Type.Equals(ClaimTypes.Surname)).FirstOrDefault();

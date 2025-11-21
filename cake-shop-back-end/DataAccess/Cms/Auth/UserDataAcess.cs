@@ -541,7 +541,7 @@ public partial class UserDataAccess(AppDbContext _context, ICommonFunction _comm
         try
         {
             var user = new User();
-            user.username = req.Username;
+            user.username = req.Email;
             user.email = req.Email;
             user.password = _commonFunction.ComputeSha256Hash(req.Password);
             user.status = 1;
