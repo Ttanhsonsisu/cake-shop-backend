@@ -349,6 +349,25 @@ public class OrderDataAccess(AppDbContext _context) : IOrder
                 user_updated = username
             };
 
+            // add payment if is_paid is true
+            if (orderEntity.is_paid)
+            {
+                var payment = new Models.Payment.Payment
+                {
+                    id = Guid.NewGuid(),
+                    order_id = newOrderId,
+                    amount = totalAmount,
+                    payment_method = request.PaymentMethod == 1? "VNPay" : "Cash",
+                    paid_date = now,
+                    payment_type = 1, // Nên dùng Enum
+                    status = 1, // Nên dùng Enum
+                    date_created = now,
+                    user_created = username,
+                    date_updated = now,
+                    user_updated = username
+                };
+                await _context.Payments.AddAsync(payment);
+            }
             // Add vào Context
             await _context.Orders.AddAsync(orderEntity);
             await _context.OrderItems.AddRangeAsync(orderItemsEntities);
@@ -357,7 +376,7 @@ public class OrderDataAccess(AppDbContext _context) : IOrder
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();
 
-            return new APIResponse(200, new { OrderId = newOrderId, Message = "Tạo đơn nháp thành công" });
+            return new APIResponse(200);
         }
         catch (Exception ex)
         {
