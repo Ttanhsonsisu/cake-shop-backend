@@ -1,4 +1,5 @@
-﻿using cake_shop_back_end.DataAccess.Cms.Auth;
+﻿using cake_shop_back_end.DataAccess.Client;
+using cake_shop_back_end.DataAccess.Cms.Auth;
 using cake_shop_back_end.DataAccess.Cms.BusinessOperation;
 using cake_shop_back_end.DataAccess.Cms.Common;
 using cake_shop_back_end.DataAccess.Cms.Configuration;
@@ -19,6 +20,7 @@ using cake_shop_back_end.Interfaces.Cms.Product;
 using cake_shop_back_end.Interfaces.Cms.SeasonalEvent;
 using cake_shop_back_end.Interfaces.Common;
 using cake_shop_back_end.Interfaces.MasterData;
+using cake_shop_back_end.Interfaces.Store;
 
 namespace cake_shop_back_end.ServiceRegistrations;
 
@@ -76,6 +78,9 @@ public static class ServiceDAL
         services.AddScoped<ICampaign, CampaignDataAccess>();
         services.AddScoped<IDiscountCode, DiscountCodeDataAccess>();
         services.AddScoped<ISeasonalEvent, SeasonalEventDataAccess>();
+
+        // store
+        services.AddScoped<IHome, HomeClientDataAccess>();
 
     }
 }
