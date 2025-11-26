@@ -9,6 +9,7 @@ using cake_shop_back_end.DataAccess.Cms.MasterData;
 using cake_shop_back_end.DataAccess.Cms.Order;
 using cake_shop_back_end.DataAccess.Cms.Product;
 using cake_shop_back_end.DataAccess.Cms.SeasionalEvent;
+using cake_shop_back_end.DataAccess.WebApp.Store;
 using cake_shop_back_end.Extensions;
 using cake_shop_back_end.Helpers;
 using cake_shop_back_end.Interfaces.Cms.Auth;
@@ -81,6 +82,7 @@ public static class ServiceDAL
 
         // store
         services.AddScoped<IHome, HomeClientDataAccess>();
+        services.AddScoped<ICakeShopStore, CakeShopStoreDataAccess>();
 
     }
 }
