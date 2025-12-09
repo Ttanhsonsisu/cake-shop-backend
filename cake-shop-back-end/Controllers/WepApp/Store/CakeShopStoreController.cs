@@ -13,7 +13,7 @@ namespace cake_shop_back_end.Controllers.WepApp.Store;
 [AllowAnonymous]
 public class CakeShopStoreController(ICakeShopStore _productClient, ILoggingHelpers _loggingHelpers) : ControllerBase
 {
-    [HttpPost("list")] // Dùng POST để gửi body JSON phức tạp dễ hơn GET
+    [HttpPost("list")] 
     public async Task<JsonResult> GetList([FromBody] CakeShopRequest request)
     {
         var username = User.Claims.FirstOrDefault(p => p.Type.Equals(ClaimTypes.Name));
@@ -43,5 +43,41 @@ public class CakeShopStoreController(ICakeShopStore _productClient, ILoggingHelp
         });
 
         return new JsonResult(data) { StatusCode = 200 };
+    }
+
+    [HttpGet("detail/{id}")]
+    public async Task<JsonResult> GetDetail(Guid id)
+    {
+        var username = User.Claims.FirstOrDefault(p => p.Type.Equals(ClaimTypes.Name));
+        var remoteIP = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
+
+        var data = await _productClient.GetProductDetail(id);
+
+        // Logging
+        await _loggingHelpers.InsertLogging(new LoggingRequest
+        {
+            UserType = "CUSTOMER",
+            IsCallApi = true,
+            ApiName = $"api/client/products/detail/{id}",
+            Actions = "View Product Detail",
+            Application = "CLIENT WEB",
+            Content = $"Xem chi tiết sản phẩm ID: {id}",
+            Functions = "Product Detail Page",
+            IsLogin = username != null,
+            ResultLogging = data.Code == "200" ? "Thành công" : "Thất bại",
+            UserCreated = username?.Value ?? "Guest",
+            IP = remoteIP
+        });
+
+        return new JsonResult(data) { StatusCode = int.Parse(data.Code) };
+    }
+
+    // 2. Lấy sản phẩm liên quan (cùng category)
+    [HttpGet("related/{id}")]
+    public async Task<JsonResult> GetRelated(Guid id)
+    {
+        // Limit mặc định lấy 4-8 sản phẩm gợi ý
+        var data = await _productClient.GetRelatedProducts(id, 4);
+        return new JsonResult(data) { StatusCode = int.Parse(data.Code) };
     }
 }
