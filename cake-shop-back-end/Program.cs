@@ -36,10 +36,17 @@ builder.Services.AddControllers().AddNewtonsoftJson(option =>
 );
 
 // add connection database
-builder.Services.AddDbContext<AppDbContext>(options =>
+//builder.Services.AddDbContext<AppDbContext>(options =>
+//{
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+//});
+
+builder.Services.AddDbContext<AppDbContext>(option =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 // add redis cache
 //builder.Services.AddStackExchangeRedisCache(options =>
