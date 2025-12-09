@@ -41,9 +41,7 @@ public static class ServiceDAL
         services.AddScoped<IUserGroup, UserGroupDataAccess>();
         services.AddScoped<ICustomer, CustomerDataAccess>();
 
-
-
-        // common 
+     // common 
         services.AddScoped<ICommonFunction, CommonFunction>();
         services.AddScoped<ILoggingHelpers, LoggingHelpers>();
         services.AddScoped<ILogging, LoggingDataAccess>();

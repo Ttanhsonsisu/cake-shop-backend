@@ -208,4 +208,123 @@ public class CakeShopStoreDataAccess(AppDbContext _context) : ICakeShopStore
             return new APIResponse(500, "Error: " + ex.Message);
         }
     }
+
+    public async Task<APIResponse> GetProductDetail(Guid id)
+    {
+        try
+        {
+            // 1. Lấy thông tin cơ bản sản phẩm
+            var product = await _context.ProductCakes
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.id == id && p.status == 1 && (p.is_visible ?? false));
+
+            if (product == null)
+                return new APIResponse(404, "Sản phẩm không tồn tại hoặc đã bị ẩn.");
+
+            // 2. Lấy danh sách ảnh (Sắp xếp ảnh chính lên đầu)
+            var images = await _context.ProductImages
+                .Where(img => img.product_id == id)
+                .OrderByDescending(img => img.is_main)
+                .Select(img => img.image_url)
+                .ToListAsync();
+
+            // 3. Lấy thông tin Variants và Attributes (Phức tạp nhất)
+            // Cấu trúc mong muốn: List các Variant, mỗi Variant có giá riêng và thuộc tính (Size M, Vị Dâu)
+            var variantsData = await (from v in _context.Variants
+                                      join vav in _context.VariantAttributeValues on v.id equals vav.variant_id
+                                      join av in _context.AttributeValues on vav.attribute_value_id equals av.id
+                                      join a in _context.Attributes on av.attribute_id equals a.id
+                                      where v.product_id == id
+                                      select new
+                                      {
+                                          VariantId = v.id,
+                                          Sku = v.sku,
+                                          Price = v.price,
+                                          AttributeCode = a.code, // SIZE, FLAVOR
+                                          AttributeName = a.name,
+                                          AttributeValue = av.value
+                                      }).ToListAsync();
+
+            // Group lại để ra danh sách Variants hoàn chỉnh phía Client
+            // Client cần biết: Có những Size nào? Có những Vị nào? Variant nào kết hợp 2 cái đó?
+            var variantsGrouped = variantsData
+                .GroupBy(x => x.VariantId)
+                .Select(g => new
+                {
+                    Id = g.Key,
+                    Sku = g.First().Sku,
+                    Price = g.First().Price,
+                    Attributes = g.Select(x => new { x.AttributeCode, x.AttributeValue }).ToList()
+                }).ToList();
+
+            // 4. Lấy Category name
+            var categoryName = await _context.ProductCakeCategories
+                .Where(pc => pc.productCake_id == id)
+                .Join(_context.Categories, pc => pc.category_id, c => c.id, (pc, c) => c.name)
+                .FirstOrDefaultAsync();
+
+            // 5. Build Response
+            var result = new
+            {
+                Id = product.id,
+                Name = product.name,
+                Description = product.description,
+                BasePrice = product.base_price,
+                Category = categoryName,
+                Images = images,
+                Variants = variantsGrouped,
+                // Tổng hợp nhanh các Option để hiển thị nút bấm (Ví dụ: List các Size có sẵn)
+                AvailableOptions = new
+                {
+                    Sizes = variantsData.Where(x => x.AttributeCode == "SIZE").Select(x => x.AttributeValue).Distinct(),
+                    Flavors = variantsData.Where(x => x.AttributeCode == "FLAVOR").Select(x => x.AttributeValue).Distinct()
+                }
+            };
+
+            return new APIResponse(200) { Data = result };
+        }
+        catch (Exception ex)
+        {
+            return new APIResponse(500, "Error: " + ex.Message);
+        }
+    }
+
+    public async Task<APIResponse> GetRelatedProducts(Guid currentProductId, int take)
+    {
+        try
+        {
+            // Logic: Tìm các Category của sản phẩm hiện tại -> Tìm sản phẩm khác cùng Category
+            var categoryIds = await _context.ProductCakeCategories
+                .Where(pc => pc.productCake_id == currentProductId)
+                .Select(pc => pc.category_id)
+                .ToListAsync();
+
+            if (!categoryIds.Any()) return new APIResponse(200) { Data = new List<object>() };
+
+            var relatedProducts = await _context.ProductCakes
+                .Where(p => p.id != currentProductId && // Trừ sản phẩm đang xem
+                            p.status == 1 && (p.is_visible ?? false) &&
+                            _context.ProductCakeCategories.Any(pc => pc.productCake_id == p.id && categoryIds.Contains(pc.category_id)))
+                .OrderBy(r => Guid.NewGuid()) // Random ngẫu nhiên
+                .Take(take)
+                .Select(p => new
+                {
+                    Id = p.id,
+                    Name = p.name,
+                    Price = p.base_price,
+                    // Lấy ảnh đại diện nhanh
+                    Image = _context.ProductImages.Where(i => i.product_id == p.id && (i.is_main ?? false))
+                                    .Select(i => i.image_url).FirstOrDefault()
+                                    ?? _context.ProductImages.Where(i => i.product_id == p.id).Select(i => i.image_url).FirstOrDefault()
+                })
+                .ToListAsync();
+
+            return new APIResponse(200) { Data = relatedProducts };
+        }
+        catch (Exception ex)
+        {
+            return new APIResponse(500, "Error: " + ex.Message);
+        }
+    }
+
 }
